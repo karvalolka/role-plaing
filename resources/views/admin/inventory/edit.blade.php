@@ -7,7 +7,7 @@
                     <nav aria-label="Breadcrumb">
                         <ol style="display: inline; padding: 0; margin: 0; list-style: none;">
                             <li style="display: inline; margin-left: 10px;">
-                                <a href="{{ route('admin.inventory.index') }}">Лор</a>
+                                <a href="{{ route('admin.inventory.index') }}">Инвентарь</a>
                             </li>
                         </ol>
                     </nav>

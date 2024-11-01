@@ -1,6 +1,20 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
+    DeleteFreePointController,
+    EditFreePointController,
+    FreePointController,
+    StoreFreePointController,
+    UpdateFreePointController
+};
+use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
+    DeleteMechanicController,
+    EditMechanicController,
+    MechanicController,
+    StoreMechanicController,
+    UpdateMechanicController
+};
 use App\Http\Controllers\Admin\Inventory\{CreateInventoryController,
     DeleteInventoryController,
     EditInventoryController,
@@ -13,7 +27,8 @@ use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     EditLoreController,
     LoreController,
     StoreLoreController,
-    UpdateLoreController};
+    UpdateLoreController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +53,24 @@ Route::prefix('admin')->group(function () {
         Route::get('/{inventory}/edit', [EditInventoryController::class, '__invoke'])->name('admin.inventory.edit');
         Route::patch('/{inventory}', [UpdateInventoryController::class, '__invoke'])->name('admin.inventory.update');
         Route::delete('/{inventory}', [DeleteInventoryController::class, '__invoke'])->name('admin.inventory.delete');
+    });
+
+    Route::prefix('freePoint')->group(function () {
+        Route::get('/', [FreePointController::class, '__invoke'])->name('admin.freePoint.index');
+        Route::get('/create', [CreateFreePointController::class, '__invoke'])->name('admin.freePoint.create');
+        Route::post('/', [StoreFreePointController::class, '__invoke'])->name('admin.freePoint.store');
+        Route::get('/{freePoint}/edit', [EditFreePointController::class, '__invoke'])->name('admin.freePoint.edit');
+        Route::patch('/{freePoint}', [UpdateFreePointController::class, '__invoke'])->name('admin.freePoint.update');
+        Route::delete('/{freePoint}', [DeleteFreePointController::class, '__invoke'])->name('admin.freePoint.delete');
+    });
+
+    Route::prefix('Mechanic')->group(function () {
+        Route::get('/', [MechanicController::class, '__invoke'])->name('admin.mechanic.index');
+        Route::get('/create', [CreateMechanicController::class, '__invoke'])->name('admin.mechanic.create');
+        Route::post('/', [StoreMechanicController::class, '__invoke'])->name('admin.mechanic.store');
+        Route::get('/{mechanic}/edit', [EditMechanicController::class, '__invoke'])->name('admin.mechanic.edit');
+        Route::patch('/{mechanic}', [UpdateMechanicController::class, '__invoke'])->name('admin.mechanic.update');
+        Route::delete('/{mechanic}', [DeleteMechanicController::class, '__invoke'])->name('admin.mechanic.delete');
     });
 });
 

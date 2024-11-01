@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\Models\Inventory;
-use App\Models\Lore;
 use Illuminate\Http\Request;
 
 class StoreInventoryController extends Controller

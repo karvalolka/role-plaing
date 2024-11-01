@@ -28,6 +28,22 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.freePoint.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
+                                <p>
+                                    Свободные очки
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.mechanic.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-columns"></i>
+                                <p>
+                                    Механики
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
