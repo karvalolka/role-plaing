@@ -8,6 +8,14 @@ use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
     StoreFreePointController,
     UpdateFreePointController
 };
+use App\Http\Controllers\Admin\Ability\{CreateAbilityController,
+    DeleteAbilityController,
+    EditAbilityController,
+    AbilityController,
+    ShowAbilityController,
+    StoreAbilityController,
+    UpdateAbilityController
+};
 use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     DeleteMechanicController,
     EditMechanicController,
@@ -28,6 +36,13 @@ use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     LoreController,
     StoreLoreController,
     UpdateLoreController
+};
+use App\Http\Controllers\Admin\Subrace\{CreateSubraceController,
+    DeleteSubraceController,
+    EditSubraceController,
+    SubraceController,
+    StoreSubraceController,
+    UpdateSubraceController
 };
 use Illuminate\Support\Facades\Route;
 
@@ -64,13 +79,32 @@ Route::prefix('admin')->group(function () {
         Route::delete('/{freePoint}', [DeleteFreePointController::class, '__invoke'])->name('admin.freePoint.delete');
     });
 
-    Route::prefix('Mechanic')->group(function () {
+    Route::prefix('mechanic')->group(function () {
         Route::get('/', [MechanicController::class, '__invoke'])->name('admin.mechanic.index');
         Route::get('/create', [CreateMechanicController::class, '__invoke'])->name('admin.mechanic.create');
         Route::post('/', [StoreMechanicController::class, '__invoke'])->name('admin.mechanic.store');
         Route::get('/{mechanic}/edit', [EditMechanicController::class, '__invoke'])->name('admin.mechanic.edit');
         Route::patch('/{mechanic}', [UpdateMechanicController::class, '__invoke'])->name('admin.mechanic.update');
         Route::delete('/{mechanic}', [DeleteMechanicController::class, '__invoke'])->name('admin.mechanic.delete');
+    });
+
+    Route::prefix('ability')->group(function () {
+        Route::get('/', [AbilityController::class, '__invoke'])->name('admin.ability.index');
+        Route::get('/create', [CreateAbilityController::class, '__invoke'])->name('admin.ability.create');
+        Route::post('/', [StoreAbilityController::class, '__invoke'])->name('admin.ability.store');
+        Route::get('/{ability}', [ShowAbilityController::class, '__invoke'])->name('admin.ability.show');
+        Route::get('/{ability}/edit', [EditAbilityController::class, '__invoke'])->name('admin.ability.edit');
+        Route::patch('/{ability}', [UpdateAbilityController::class, '__invoke'])->name('admin.ability.update');
+        Route::delete('/{ability}', [DeleteAbilityController::class, '__invoke'])->name('admin.ability.delete');
+    });
+
+    Route::prefix('subrace')->group(function () {
+        Route::get('/', [SubraceController::class, '__invoke'])->name('admin.subrace.index');
+        Route::get('/create', [CreateSubraceController::class, '__invoke'])->name('admin.subrace.create');
+        Route::post('/', [StoreSubraceController::class, '__invoke'])->name('admin.subrace.store');
+        Route::get('/{subrace}/edit', [EditSubraceController::class, '__invoke'])->name('admin.subrace.edit');
+        Route::patch('/{subrace}', [UpdateSubraceController::class, '__invoke'])->name('admin.subrace.update');
+        Route::delete('/{subrace}', [DeleteSubraceController::class, '__invoke'])->name('admin.subrace.delete');
     });
 });
 

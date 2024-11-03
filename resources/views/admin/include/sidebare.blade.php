@@ -14,7 +14,7 @@
 
                         <li class="nav-item">
                             <a href="{{route('admin.lore.index')}}" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
+                                <i class="nav-icon fas fa-globe-asia"></i>
                                 <p>
                                     Лор
                                 </p>
@@ -22,7 +22,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.inventory.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                                <i class="nav-icon fas fa-boxes"></i>
                                 <p>
                                     Инвентарь
                                 </p>
@@ -30,7 +30,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.freePoint.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                                <i class="nav-icon fab fa-free-code-camp"></i>
                                 <p>
                                     Свободные очки
                                 </p>
@@ -38,9 +38,25 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.mechanic.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                                <i class="nav-icon fas fa-cogs"></i>
                                 <p>
                                     Механики
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.ability.index')}}" class="nav-link">
+                                <i class="nav-icon  fas fa-book"></i>
+                                <p>
+                                    Навыки
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.subrace.index')}}" class="nav-link">
+                                <i class="nav-icon fab fa-ravelry"></i>
+                                <p>
+                                    Подрасы
                                 </p>
                             </a>
                         </li>
