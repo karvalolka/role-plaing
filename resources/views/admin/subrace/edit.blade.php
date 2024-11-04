@@ -35,6 +35,19 @@
                     @enderror
                 </div>
 
+                <div class="form-group">
+                    <label for="race_id">Принадлежит Расе</label>
+                    <select id="race_id" class="form-control col-2" name="race_id">
+                        <option value="">Выберите расу</option>
+                        @foreach($races as $race)
+                            <option value="{{ $race->id }}">{{ $race->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('race_id')
+                    <div class="text-danger">Выберите расу</div>
+                    @enderror
+                </div>
+
                 <input type="submit" class="btn btn-primary" value="Обновить">
             </form>
         </div>

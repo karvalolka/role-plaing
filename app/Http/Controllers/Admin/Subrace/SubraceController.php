@@ -9,7 +9,7 @@ class SubraceController extends Controller
 {
     public function __invoke()
     {
-        $subraces = Subrace::all();
+        $subraces = Subrace::with('race')->get();
         return view('admin.subrace.index', compact('subraces'));
     }
 }

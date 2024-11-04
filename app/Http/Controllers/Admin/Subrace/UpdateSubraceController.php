@@ -12,6 +12,7 @@ class UpdateSubraceController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'race_id' => 'required|exists:races,id'
         ]);
         $subrace->update($data);
         $subraces = Subrace::all();

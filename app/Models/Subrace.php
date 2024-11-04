@@ -8,4 +8,10 @@ class Subrace extends Model
 {
     protected $table = 'subraces';
     protected $guarded = false;
+
+    public function race()
+    {
+        return $this->belongsTo(Race::class);
+    }
+
 }

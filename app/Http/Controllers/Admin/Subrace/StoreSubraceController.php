@@ -12,6 +12,7 @@ class StoreSubraceController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'race_id' => 'required|exists:races,id'
         ]);
         Subrace::firstOrCreate($data);
         return redirect()->route('admin.subrace.index');
