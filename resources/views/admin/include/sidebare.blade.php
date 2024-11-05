@@ -68,17 +68,22 @@
                                 </p>
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
+                            <a href="{{route('admin.subgrade.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-graduation-cap"></i>
                                 <p>
-                                    Calendar
-                                    <span class="badge badge-info right">2</span>
+                                    Подклассы
                                 </p>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="{{route('admin.grade.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>
+                                    Классы
+                                </p>
+                            </a>
+                        </li>
 
                     </ul>
                 </nav>

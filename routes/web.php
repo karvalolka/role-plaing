@@ -6,51 +6,56 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     EditAbilityController,
     ShowAbilityController,
     StoreAbilityController,
-    UpdateAbilityController
-};
+    UpdateAbilityController};
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
     DeleteFreePointController,
     EditFreePointController,
     FreePointController,
     StoreFreePointController,
-    UpdateFreePointController
-};
+    UpdateFreePointController};
+use App\Http\Controllers\Admin\Grade\{CreateGradeController,
+    DeleteGradeController,
+    EditGradeController,
+    GradeController,
+    StoreGradeController,
+    UpdateGradeController,};
 use App\Http\Controllers\Admin\Inventory\{CreateInventoryController,
     DeleteInventoryController,
     EditInventoryController,
     InventoryController,
     StoreInventoryController,
-    UpdateInventoryController
-};
+    UpdateInventoryController};
 use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     DeleteLoreController,
     EditLoreController,
     LoreController,
     StoreLoreController,
-    UpdateLoreController
-};
+    UpdateLoreController};
 use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     DeleteMechanicController,
     EditMechanicController,
     MechanicController,
     StoreMechanicController,
-    UpdateMechanicController
-};
+    UpdateMechanicController};
 use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
     RaceController,
     StoreRaceController,
-    UpdateRaceController
-};
+    UpdateRaceController};
+use App\Http\Controllers\Admin\Subgrade\{CreateSubgradeController,
+    DeleteSubgradeController,
+    EditSubgradeController,
+    StoreSubgradeController,
+    SubgradeController,
+    UpdateSubgradeController};
 use App\Http\Controllers\Admin\Subrace\{CreateSubraceController,
     DeleteSubraceController,
     EditSubraceController,
     StoreSubraceController,
     SubraceController,
-    UpdateSubraceController
-};
+    UpdateSubraceController};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -121,6 +126,24 @@ Route::prefix('admin')->group(function () {
         Route::get('/{race}/edit', [EditRaceController::class, '__invoke'])->name('admin.race.edit');
         Route::patch('/{race}', [UpdateRaceController::class, '__invoke'])->name('admin.race.update');
         Route::delete('/{race}', [DeleteRaceController::class, '__invoke'])->name('admin.race.delete');
+    });
+
+    Route::prefix('grade')->group(function () {
+        Route::get('/', [GradeController::class, '__invoke'])->name('admin.grade.index');
+        Route::get('/create', [CreateGradeController::class, '__invoke'])->name('admin.grade.create');
+        Route::post('/', [StoreGradeController::class, '__invoke'])->name('admin.grade.store');
+        Route::get('/{grade}/edit', [EditGradeController::class, '__invoke'])->name('admin.grade.edit');
+        Route::patch('/{grade}', [UpdateGradeController::class, '__invoke'])->name('admin.grade.update');
+        Route::delete('/{grade}', [DeleteGradeController::class, '__invoke'])->name('admin.grade.delete');
+    });
+
+    Route::prefix('subgrade')->group(function () {
+        Route::get('/', [SubgradeController::class, '__invoke'])->name('admin.subgrade.index');
+        Route::get('/create', [CreateSubgradeController::class, '__invoke'])->name('admin.subgrade.create');
+        Route::post('/', [StoreSubgradeController::class, '__invoke'])->name('admin.subgrade.store');
+        Route::get('/{subgrade}/edit', [EditSubgradeController::class, '__invoke'])->name('admin.subgrade.edit');
+        Route::patch('/{subgrade}', [UpdateSubgradeController::class, '__invoke'])->name('admin.subgrade.update');
+        Route::delete('/{subgrade}', [DeleteSubgradeController::class, '__invoke'])->name('admin.subgrade.delete');
     });
 });
 
