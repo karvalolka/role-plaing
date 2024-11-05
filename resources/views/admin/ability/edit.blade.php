@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+
 @section('content')
     <div class="container-fluid">
         <table style="width: 100%;">
@@ -31,19 +32,43 @@
 
                     <div class="form-group">
                         <label for="class_race" class="form-label">Тип способности:</label>
-                        <select id="class_race" class="form-control" name="class_race" required>
-                            <option value="">Выберите тип</option>
-                            <option value="class" {{ old('class_race', $ability->class_race ?? '') === 'class' ? 'selected' : '' }}>Класс</option>
-                            <option value="race" {{ old('class_race', $ability->class_race ?? '') === 'race' ? 'selected' : '' }}>Раса</option>
-                            <option value="other" {{ old('class_race', $ability->class_race ?? '') === 'other' ? 'selected' : '' }}>Другое</option>
+                        <select id="class_race" class="form-control" name="class_race[]" multiple="multiple" value="{{$ability->class_race}}" required>
+                            <option value="class" {{ in_array('class', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Класс</option>
+                            <option value="race" {{ in_array('race', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Раса</option>
+                            <option value="other" {{ in_array('other', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Другое</option>
                         </select>
                         @error('class_race')
                         <div class="text-danger">Пожалуйста, выберите тип способности</div>
                         @enderror
                     </div>
 
-                    @php
+                    <div class="form-group" id="class-container" style="display: none;">
+                        <label for="class">Выберите класс:</label>
+                        <select id="class" class="form-control" name="class_id">
+                            <option value="">Выберите класс</option>
+                            @foreach($grades as $grade)
+                                <option value="{{ $grade->id }}" {{ old('class_id', $ability->class_id) == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('class_id')
+                        <div class="text-danger">Пожалуйста, выберите класс</div>
+                        @enderror
+                    </div>
 
+                    <div class="form-group" id="race-container" style="display: none;">
+                        <label for="race">Выберите расу:</label>
+                        <select id="race" class="form-control" name="race_id">
+                            <option value="">Выберите расу</option>
+                            @foreach($races as $race)
+                                <option value="{{ $race->id }}" {{ old('race_id', $ability->race_id) == $race->id ? 'selected' : '' }}>{{ $race->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('race_id')
+                        <div class="text-danger">Пожалуйста, выберите расу</div>
+                        @enderror
+                    </div>
+
+                    @php
                         $conditions = json_decode($ability->condition, true) ?? [];
                         if (!is_array($conditions)) {
                             $conditions = [$conditions];
@@ -64,7 +89,7 @@
 
                     <div class="form-group">
                         <textarea id="story" class="form-control" name="description" rows="5" style="resize: both;"
-                                  placeholder="Введите текст">{{$ability->description}}</textarea>
+                                  placeholder="Введите текст">{{ old('description', $ability->description) }}</textarea>
                         @error('description')
                         <div class="text-danger">Заполните поле</div>
                         @enderror
@@ -79,17 +104,33 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const classRaceSelect = document.getElementById('class_race');
+            const classContainer = document.getElementById('class-container');
+            const raceContainer = document.getElementById('race-container');
             const cubeContainer = document.getElementById('cube-container');
 
-            // Проверка для показа/скрытия блока выбора куба
             classRaceSelect.addEventListener('change', function() {
-                cubeContainer.style.display = this.value === 'other' ? 'block' : 'none';
+
+                const selectedValues = Array.from(this.selectedOptions).map(option => option.value);
+
+                // Скрываем все контейнеры
+                classContainer.style.display = 'none';
+                raceContainer.style.display = 'none';
+                cubeContainer.style.display = 'none';
+
+
+                if (selectedValues.includes('class')) {
+                    classContainer.style.display = 'block';
+                }
+                if (selectedValues.includes('race')) {
+                    raceContainer.style.display = 'block';
+                }
+                if (selectedValues.includes('other')) {
+                    cubeContainer.style.display = 'block';
+                }
             });
 
-            // Инициализация видимости блока выбора куба при загрузке страницы
-            if (classRaceSelect.value === 'other') {
-                cubeContainer.style.display = 'block';
-            }
+
+            classRaceSelect.dispatchEvent(new Event('change'));
         });
     </script>
 @endsection

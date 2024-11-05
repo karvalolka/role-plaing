@@ -1,4 +1,5 @@
 @extends('admin.layouts.main')
+
 @section('content')
     <div class="container-fluid">
         <table style="width: 100%;">
@@ -30,8 +31,7 @@
                     </div>
                     <div class="form-group">
                         <label for="class_race" class="form-label">Тип способности:</label>
-                        <select id="class_race" class="form-control" name="class_race" required>
-                            <option value="">Выберите тип</option>
+                        <select id="class_race" class="form-control" name="class_race[]" multiple="multiple" required>
                             <option value="class">Класс</option>
                             <option value="race">Раса</option>
                             <option value="other">Другое</option>
@@ -40,6 +40,34 @@
                         <div class="text-danger">Пожалуйста, выберите тип способности</div>
                         @enderror
                     </div>
+
+                    <div class="form-group" id="class-container" style="display: none;">
+                        <label for="class">Выберите класс:</label>
+                        <select id="class" class="form-control" name="class_id[]">
+                            <option value="">Выберите класс</option>
+                            @foreach($grades as $grade)
+                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('class_id')
+                        <div class="text-danger">Пожалуйста, выберите класс</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="form-group" id="race-container" style="display: none;">
+                        <label for="race">Выберите расу:</label>
+                        <select id="race" class="form-control" name="race_id[]">
+                            <option value="">Выберите расу</option>
+                            @foreach($races as $race)
+                                <option value="{{ $race->id }}">{{ $race->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('race_id')
+                        <div class="text-danger">Пожалуйста, выберите расу</div>
+                        @enderror
+                    </div>
+
                     <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
                         <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple"
@@ -69,15 +97,31 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const classRaceSelect = document.getElementById('class_race');
+            const classContainer = document.getElementById('class-container');
+            const raceContainer = document.getElementById('race-container');
             const cubeContainer = document.getElementById('cube-container');
 
             classRaceSelect.addEventListener('change', function() {
-                if (this.value === 'other') {
+                // Скрываем все контейнеры по умолчанию
+                classContainer.style.display = 'none';
+                raceContainer.style.display = 'none';
+                cubeContainer.style.display = 'none';
+
+                const selectedValues = Array.from(classRaceSelect.selectedOptions).map(option => option.value);
+
+                if (selectedValues.includes('class')) {
+                    classContainer.style.display = 'block';
+                }
+                if (selectedValues.includes('race')) {
+                    raceContainer.style.display = 'block';
+                }
+                if (selectedValues.includes('other')) {
                     cubeContainer.style.display = 'block';
-                } else {
-                    cubeContainer.style.display = 'none';
                 }
             });
+
+            // Вызовите событие сразу, чтобы обработать возможное состояние по умолчанию.
+            classRaceSelect.dispatchEvent(new Event('change'));
         });
     </script>
 @endsection
