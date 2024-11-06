@@ -10,7 +10,7 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
 
-                        <li class="nav-header">EXAMPLES</li>
+                        <li class="nav-header">Основа</li>
 
                         <li class="nav-item">
                             <a href="{{route('admin.lore.index')}}" class="nav-link">
@@ -81,6 +81,25 @@
                                 <i class="nav-icon fas fa-user-graduate"></i>
                                 <p>
                                     Классы
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-header">Вспомогательные</li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>
+                                    Типы навыков
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.cube.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <p>
+                                     D6
                                 </p>
                             </a>
                         </li>

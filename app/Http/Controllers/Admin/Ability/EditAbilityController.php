@@ -13,6 +13,7 @@ class EditAbilityController extends Controller
     {
         $grades = Grade::all();
         $races = Race::all();
-        return view('admin.ability.edit', compact('ability', 'grades', 'races'));
+        $class_race = $ability->class_race;
+        return view('admin.ability.edit', compact('ability', 'grades', 'races', 'class_race'));
     }
 }

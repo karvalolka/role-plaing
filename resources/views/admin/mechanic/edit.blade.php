@@ -22,7 +22,7 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group mb-3">
-                    <label for="cost" class="form-label">Стоимость:</label>
+                    <label for="cost" class="form-label">Название:</label>
                     <input id="cost" name="types" class="form-control" placeholder="Введите стоимость"
                            value="{{ old('types', $mechanic->types) }}" required>
                     @error('types')

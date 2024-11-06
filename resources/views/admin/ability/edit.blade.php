@@ -32,15 +32,16 @@
 
                     <div class="form-group">
                         <label for="class_race" class="form-label">Тип способности:</label>
-                        <select id="class_race" class="form-control" name="class_race[]" multiple="multiple" value="{{$ability->class_race}}" required>
-                            <option value="class" {{ in_array('class', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Класс</option>
-                            <option value="race" {{ in_array('race', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Раса</option>
-                            <option value="other" {{ in_array('other', old('class_race', json_decode($ability->class_race, true) ?? [])) ? 'selected' : '' }}>Другое</option>
+                        <select id="class_race" class="form-control" name="class_race" required>
+                            <option value="class" {{ $class_race == 'class' ? 'selected' : '' }}>Класс</option>
+                            <option value="race" {{ $class_race == 'race' ? 'selected' : '' }}>Раса</option>
+                            <option value="other" {{ $class_race == 'other' ? 'selected' : '' }}>Другое</option>
                         </select>
                         @error('class_race')
                         <div class="text-danger">Пожалуйста, выберите тип способности</div>
                         @enderror
                     </div>
+
 
                     <div class="form-group" id="class-container" style="display: none;">
                         <label for="class">Выберите класс:</label>
@@ -109,14 +110,12 @@
             const cubeContainer = document.getElementById('cube-container');
 
             classRaceSelect.addEventListener('change', function() {
-
                 const selectedValues = Array.from(this.selectedOptions).map(option => option.value);
 
                 // Скрываем все контейнеры
                 classContainer.style.display = 'none';
                 raceContainer.style.display = 'none';
                 cubeContainer.style.display = 'none';
-
 
                 if (selectedValues.includes('class')) {
                     classContainer.style.display = 'block';
@@ -128,7 +127,6 @@
                     cubeContainer.style.display = 'block';
                 }
             });
-
 
             classRaceSelect.dispatchEvent(new Event('change'));
         });

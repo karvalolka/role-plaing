@@ -6,56 +6,79 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     EditAbilityController,
     ShowAbilityController,
     StoreAbilityController,
-    UpdateAbilityController};
+    UpdateAbilityController
+};
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Cube\{CreateCubeController,
+    CubeController,
+    DeleteCubeController,
+    EditCubeController,
+    StoreCubeController,
+    UpdateCubeController
+};
 use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
     DeleteFreePointController,
     EditFreePointController,
     FreePointController,
     StoreFreePointController,
-    UpdateFreePointController};
+    UpdateFreePointController
+};
 use App\Http\Controllers\Admin\Grade\{CreateGradeController,
     DeleteGradeController,
     EditGradeController,
     GradeController,
     StoreGradeController,
-    UpdateGradeController,};
+    UpdateGradeController,
+};
 use App\Http\Controllers\Admin\Inventory\{CreateInventoryController,
     DeleteInventoryController,
     EditInventoryController,
     InventoryController,
     StoreInventoryController,
-    UpdateInventoryController};
+    UpdateInventoryController
+};
 use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     DeleteLoreController,
     EditLoreController,
     LoreController,
     StoreLoreController,
-    UpdateLoreController};
+    UpdateLoreController
+};
 use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     DeleteMechanicController,
     EditMechanicController,
     MechanicController,
     StoreMechanicController,
-    UpdateMechanicController};
+    UpdateMechanicController
+};
 use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
     RaceController,
     StoreRaceController,
-    UpdateRaceController};
+    UpdateRaceController
+};
 use App\Http\Controllers\Admin\Subgrade\{CreateSubgradeController,
     DeleteSubgradeController,
     EditSubgradeController,
     StoreSubgradeController,
     SubgradeController,
-    UpdateSubgradeController};
+    UpdateSubgradeController
+};
 use App\Http\Controllers\Admin\Subrace\{CreateSubraceController,
     DeleteSubraceController,
     EditSubraceController,
     StoreSubraceController,
     SubraceController,
-    UpdateSubraceController};
+    UpdateSubraceController
+};
+use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
+    DeleteTypeAbilityController,
+    EditTypeAbilityController,
+    StoreTypeAbilityController,
+    TypeAbilityController,
+    UpdateTypeAbilityController
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -144,6 +167,24 @@ Route::prefix('admin')->group(function () {
         Route::get('/{subgrade}/edit', [EditSubgradeController::class, '__invoke'])->name('admin.subgrade.edit');
         Route::patch('/{subgrade}', [UpdateSubgradeController::class, '__invoke'])->name('admin.subgrade.update');
         Route::delete('/{subgrade}', [DeleteSubgradeController::class, '__invoke'])->name('admin.subgrade.delete');
+    });
+
+    Route::prefix('typeAbility')->group(function () {
+        Route::get('/', [TypeAbilityController::class, '__invoke'])->name('admin.typeAbility.index');
+        Route::get('/create', [CreateTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.create');
+        Route::post('/', [StoreTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.store');
+        Route::get('/{typeAbility}/edit', [EditTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.edit');
+        Route::patch('/{typeAbility}', [UpdateTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.update');
+        Route::delete('/{typeAbility}', [DeleteTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.delete');
+    });
+
+    Route::prefix('cube')->group(function () {
+        Route::get('/', [CubeController::class, '__invoke'])->name('admin.cube.index');
+        Route::get('/create', [CreateCubeController::class, '__invoke'])->name('admin.cube.create');
+        Route::post('/', [StoreCubeController::class, '__invoke'])->name('admin.cube.store');
+        Route::get('/{cube}/edit', [EditCubeController::class, '__invoke'])->name('admin.cube.edit');
+        Route::patch('/{cube}', [UpdateCubeController::class, '__invoke'])->name('admin.cube.update');
+        Route::delete('/{cube}', [DeleteCubeController::class, '__invoke'])->name('admin.cube.delete');
     });
 });
 
