@@ -8,4 +8,9 @@ class Cube extends Model
 {
     protected $table = 'cubes';
     protected $guarded = false;
+
+    public function typeAbilities()
+    {
+        return $this->belongsToMany(TypeAbility::class, 'type_ability_cubes');
+    }
 }

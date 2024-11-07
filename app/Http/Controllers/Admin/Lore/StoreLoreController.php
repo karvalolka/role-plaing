@@ -12,6 +12,7 @@ class StoreLoreController extends Controller
     {
         $data = $request->validate([
             'text' => 'required|string',
+            'era' => 'required|string',
         ]);
         Lore::firstOrCreate($data);
         return redirect()->route('admin.lore.index');

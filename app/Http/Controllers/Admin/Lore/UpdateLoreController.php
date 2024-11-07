@@ -12,6 +12,7 @@ class UpdateLoreController extends Controller
     {
         $data = $request->validate([
             'text' => 'required|string',
+            'era' => 'required|string',
         ]);
         $lore->update($data);
         $lores = Lore::all();

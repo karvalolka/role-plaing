@@ -4,16 +4,13 @@ namespace App\Http\Controllers\Admin\TypeAbility;
 
 use App\Http\Controllers\Controller;
 use App\Models\TypeAbility;
-use Illuminate\Http\Request;
 
 class TypeAbilityController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $data = $request->validate([
-            'name' => 'required|string',
-        ]);
-        TypeAbility::firstOrCreate($data);
-        return redirect()->route('admin.typeAbility.index');
+        $typeAbilities = TypeAbility::all();
+        return view('admin.typeAbility.index', compact('typeAbilities'));
     }
+
 }

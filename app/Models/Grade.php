@@ -13,4 +13,9 @@ class Grade extends Model
     {
         return $this->hasMany(Subgrade::class, 'grade_id');
     }
+
+    public function typeAbilities()
+    {
+        return $this->belongsToMany(TypeAbility::class, 'type_ability_grades');
+    }
 }

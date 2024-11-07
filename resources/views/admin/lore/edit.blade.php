@@ -21,6 +21,19 @@
             <form action="{{ route('admin.lore.update', $lore->id) }}" method="POST" class="col-xl-12 col-md-6 mb-4">
                 @csrf
                 @method('PATCH')
+                <div class="form-group col-3 ">
+                    <input
+                        class="form-control"
+                        name="era"
+                        placeholder="Введите Название эры"
+                        value="{{ old('era', $lore->era) }}"
+                        required
+                    >
+
+                    @error('era')
+                    <div class="text-danger">Заполните поле</div>
+                    @enderror
+                </div>
                 <div class="form-group">
                     <textarea class="form-control" name="text" placeholder="Измените историю" style="min-height: 150px; resize: vertical;">{{$lore->text}}</textarea>
                     @error('text')

@@ -23,6 +23,14 @@
                 <form action="{{ route('admin.lore.store') }}" method="POST" class="col-xl-12 col-md-6 mb-4">
                     @csrf
                     <div class="form-group">
+                        <label for="story">Введите название эры</label>
+                        <input class="form-control" name="era" value="{{ old('era') }}" placeholder="Введите название эры" required>
+
+                        @error('era')
+                        <div class="text-danger">Заполните поле корректно</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
                         <label for="story">Поведайте историю</label>
                         <textarea id="story" class="form-control" name="text" rows="5" style="resize: both;" placeholder="Поведайте историю"></textarea>
                         @error('text')

@@ -25,6 +25,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
+                                <th>Эпоха</th>
                                 <th>Текст</th>
                                 <th class="text-center">Действия</th>
                             </tr>
@@ -32,6 +33,7 @@
                             <tbody>
                             @foreach($lores as $lore)
                                 <tr>
+                                    <td>{{ $lore->era }}</td>
                                     <td>{{ $lore->text }}</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center gap-2">
