@@ -27,14 +27,13 @@
                     <div class="card-body">
                         <table class="table table-bordered">
                             <tbody>
-                            @foreach($groupedAbilities as $classRace => $abilitiesByCondition)
                                 <div class="row mb-4">
                                     <div class="col-md-12">
-                                        <h4 class="font-weight-bold">Принадлежность: <span style="color: blue;">{{ $classRace }}</span></h4>
+                                        <h4 class="font-weight-bold">Принадлежность: <span style="color: blue;"></span></h4>
                                         <hr class="my-3">
                                         <div class="row">
-                                            @foreach($abilitiesByCondition as $conditions => $abilities)
-                                                <h5 class="font-weight-bold">Условия: <span style="color: red;">{{ $conditions }}</span></h5>
+
+                                                <h5 class="font-weight-bold">Условия: <span style="color: red;"></span></h5>
                                                 <div class="col-md-12">
                                                     <div class="row">
                                                         @foreach($abilities as $ability)
@@ -43,15 +42,6 @@
                                                                     <div class="d-flex justify-content-between align-items-center">
                                                                         <div>
                                                                             <h5 class="mb-0">{{ $ability->name }}</h5>
-                                                                            @if(!empty($ability->condition))
-                                                                                    <?php
-                                                                                    $conditionValues = json_decode($ability->condition);
-                                                                                    $conditionNames = array_map(function($value) {
-                                                                                        return Ability::getConditionName($value);
-                                                                                    }, (array)$conditionValues);
-                                                                                    ?>
-                                                                                <small class="text-muted">Условия: {{ implode(', ', $conditionNames) }}</small>
-                                                                            @endif
                                                                         </div>
                                                                         <div class="d-flex align-items-center">
                                                                             <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-link p-1">
@@ -75,12 +65,11 @@
                                                     </div>
                                                 </div>
                                                 <hr class="my-4">
-                                            @endforeach
+
                                         </div>
                                     </div>
                                 </div>
                                 <hr class="my-5">
-                            @endforeach
                             </tbody>
                         </table>
                     </div>

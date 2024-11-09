@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin\Ability;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cube;
 use App\Models\Grade;
 use App\Models\Race;
+use App\Models\TypeAbility;
 
 class CreateAbilityController extends Controller
 {
@@ -12,6 +14,8 @@ class CreateAbilityController extends Controller
     {
         $grades = Grade::all();
         $races = Race::all();
-        return view('admin.ability.create', compact('grades', 'races'));
+        $typeAbilities = TypeAbility::all();
+        $cubes = Cube::all();
+        return view('admin.ability.create', compact('grades', 'races', 'typeAbilities', 'cubes'));
     }
 }

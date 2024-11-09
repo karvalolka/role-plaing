@@ -11,6 +11,10 @@ class Ability extends Model
 
     public function typeAbilities()
     {
-        return $this->belongsToMany(TypeAbility::class, 'ability_type_abilities');
+        return $this->belongsToMany(TypeAbility::class, 'ability_type_abilities', 'ability_id', 'type_abilities_id');
+    }
+    public function grades()
+    {
+        return $this->hasManyThrough(Grade::class, TypeAbility::class, 'ability_id', 'type_ability_id', 'id', 'id');
     }
 }

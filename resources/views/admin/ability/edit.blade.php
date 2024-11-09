@@ -21,34 +21,41 @@
                 <form action="{{ route('admin.ability.update', $ability->id) }}" method="POST" class="mb-4">
                     @csrf
                     @method('PATCH')
+
                     <div class="form-group mb-3">
-                        <label for="cost" class="form-label">Название:</label>
-                        <input id="cost" name="name" class="form-control" placeholder="Введите название"
-                               value="{{ old('name', $ability->name) }}" required>
+                        <label for="name" class="form-label">Название:</label>
+                        <input id="name" name="name" class="form-control" placeholder="Введите название" value="{{ old('name', $ability->name) }}" required>
                         @error('name')
                         <div class="text-danger small">Заполните поле</div>
                         @enderror
                     </div>
 
                     <div class="form-group">
-                        <label for="class_race" class="form-label">Тип способности:</label>
-                        <select id="class_race" class="form-control" name="class_race" required>
-                            <option value="class" {{ $class_race == 'class' ? 'selected' : '' }}>Класс</option>
-                            <option value="race" {{ $class_race == 'race' ? 'selected' : '' }}>Раса</option>
-                            <option value="other" {{ $class_race == 'other' ? 'selected' : '' }}>Другое</option>
+                        <label>Тип способности:</label>
+                        <select class="select2" name="type_ability[]" id="type_ability" multiple="multiple" data-placeholder="Выберите тип" style="width: 100%;">
+                            @foreach ($typeAbilities as $type)
+                                <option value="{{ $type->id }}"
+                                        @if(in_array($type->id, old('type_ability', $selectedTypeAbilities))) selected @endif>
+                                    {{ $type->name }}
+                                </option>
+                            @endforeach
                         </select>
-                        @error('class_race')
+                        @error('type_ability')
                         <div class="text-danger">Пожалуйста, выберите тип способности</div>
                         @enderror
                     </div>
 
-
                     <div class="form-group" id="class-container" style="display: none;">
-                        <label for="class">Выберите класс:</label>
-                        <select id="class" class="form-control" name="class_id">
+                        <label for="grade">Выберите класс:</label>
+                        <select id="grade" class="form-control" name="class_id[]" multiple="multiple">
                             <option value="">Выберите класс</option>
                             @foreach($grades as $grade)
-                                <option value="{{ $grade->id }}" {{ old('class_id', $ability->class_id) == $grade->id ? 'selected' : '' }}>{{ $grade->name }}</option>
+                                <option value="{{ $grade->id }}"
+                                        @if(in_array($grade->id, old('class_id', $selectedGrades)))
+                                            selected
+                                    @endif>
+                                    {{ $grade->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('class_id')
@@ -56,12 +63,17 @@
                         @enderror
                     </div>
 
+
+
+
+
+
                     <div class="form-group" id="race-container" style="display: none;">
                         <label for="race">Выберите расу:</label>
-                        <select id="race" class="form-control" name="race_id">
+                        <select id="race" class="form-control" name="race_id[]">
                             <option value="">Выберите расу</option>
                             @foreach($races as $race)
-                                <option value="{{ $race->id }}" {{ old('race_id', $ability->race_id) == $race->id ? 'selected' : '' }}>{{ $race->name }}</option>
+                                <option value="{{ $race->id }}">{{ old('race', $race->name) }}</option>
                             @endforeach
                         </select>
                         @error('race_id')
@@ -69,18 +81,12 @@
                         @enderror
                     </div>
 
-                    @php
-                        $conditions = json_decode($ability->condition, true) ?? [];
-                        if (!is_array($conditions)) {
-                            $conditions = [$conditions];
-                        }
-                    @endphp
-
-                    <div class="form-group" id="cube-container" style="{{ !empty($conditions) && count(array_intersect($conditions, range(1, 6))) > 0 ? 'display: block;' : 'display: none;' }}">
+                    <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
-                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple" data-placeholder="Выберите куб" style="width: 100%;">
-                            @foreach(range(1, 6) as $cube)
-                                <option value="{{ $cube }}" {{ in_array($cube, $conditions) ? 'selected' : '' }}>{{ $cube }}</option>
+                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple"
+                                data-placeholder="Выберите куб" style="width: 100%;">
+                            @foreach($cubes as $cube)
+                                <option value="{{ $cube->id }}">{{ old('name', $cube->name) }}</option>
                             @endforeach
                         </select>
                         @error('condition')
@@ -89,7 +95,8 @@
                     </div>
 
                     <div class="form-group">
-                        <textarea id="story" class="form-control" name="description" rows="5" style="resize: both;"
+                        <label for="description">Описание навыка:</label>
+                        <textarea id="description" class="form-control" name="description" rows="5" style="resize: both;"
                                   placeholder="Введите текст">{{ old('description', $ability->description) }}</textarea>
                         @error('description')
                         <div class="text-danger">Заполните поле</div>
@@ -103,32 +110,30 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const classRaceSelect = document.getElementById('class_race');
+        document.addEventListener('DOMContentLoaded', function () {
+            const abilityTypeSelect = document.getElementById('type_ability');
             const classContainer = document.getElementById('class-container');
             const raceContainer = document.getElementById('race-container');
             const cubeContainer = document.getElementById('cube-container');
 
-            classRaceSelect.addEventListener('change', function() {
-                const selectedValues = Array.from(this.selectedOptions).map(option => option.value);
+            const raceAbilityId = '1';
+            const classAbilityId = '2';
+            const cubeAbilityId = '3';
 
-                // Скрываем все контейнеры
-                classContainer.style.display = 'none';
-                raceContainer.style.display = 'none';
-                cubeContainer.style.display = 'none';
 
-                if (selectedValues.includes('class')) {
-                    classContainer.style.display = 'block';
-                }
-                if (selectedValues.includes('race')) {
-                    raceContainer.style.display = 'block';
-                }
-                if (selectedValues.includes('other')) {
-                    cubeContainer.style.display = 'block';
-                }
-            });
+            function updateFieldsVisibility() {
+                const selectedAbilities = Array.from(abilityTypeSelect.selectedOptions).map(option => option.value);
 
-            classRaceSelect.dispatchEvent(new Event('change'));
+                classContainer.style.display = selectedAbilities.includes(classAbilityId) ? 'block' : 'none';
+                raceContainer.style.display = selectedAbilities.includes(raceAbilityId) ? 'block' : 'none';
+                cubeContainer.style.display = selectedAbilities.includes(cubeAbilityId) ? 'block' : 'none';
+            }
+
+            abilityTypeSelect.addEventListener('change', updateFieldsVisibility);
+
+            updateFieldsVisibility();
+
+            $('.select2').select2();
         });
     </script>
 @endsection

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin\Ability;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
+use App\Models\Cube;
 use App\Models\Grade;
 use App\Models\Race;
+use App\Models\TypeAbility;
 
 class EditAbilityController extends Controller
 {
@@ -13,7 +15,24 @@ class EditAbilityController extends Controller
     {
         $grades = Grade::all();
         $races = Race::all();
-        $class_race = $ability->class_race;
-        return view('admin.ability.edit', compact('ability', 'grades', 'races', 'class_race'));
+        $typeAbilities = TypeAbility::all();
+        $cubes = Cube::all();
+
+        $ability->load('typeAbilities.grades');
+
+        $selectedTypeAbilities = $ability->typeAbilities->pluck('id')->toArray();
+
+        $selectedGrades = $ability->typeAbilities->flatMap(function ($typeAbility) {
+            return $typeAbility->grades->pluck('id');
+        })->unique()->toArray();
+
+        return view('admin.ability.edit', compact('ability',
+            'grades',
+            'races',
+            'typeAbilities',
+            'cubes',
+            'selectedTypeAbilities',
+            'selectedGrades',
+        ));
     }
 }
