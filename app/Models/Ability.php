@@ -15,6 +15,19 @@ class Ability extends Model
     }
     public function grades()
     {
-        return $this->hasManyThrough(Grade::class, TypeAbility::class, 'ability_id', 'type_ability_id', 'id', 'id');
+        return $this->belongsToMany(Grade::class, 'ability_grades', 'ability_id', 'grade_id')
+            ->withTimestamps();
+    }
+
+    public function races()
+    {
+        return $this->belongsToMany(Race::class, 'ability_races', 'ability_id', 'race_id')
+            ->withTimestamps();
+    }
+
+    public function cubes()
+    {
+        return $this->belongsToMany(Cube::class, 'ability_cubes', 'ability_id', 'cube_id')
+            ->withTimestamps();
     }
 }

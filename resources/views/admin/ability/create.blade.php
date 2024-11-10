@@ -10,6 +10,7 @@
             </ul>
         </div>
     @endif
+
     <div class="container-fluid">
         <table style="width: 100%;">
             <tr>
@@ -35,7 +36,7 @@
 
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Название:</label>
-                        <input id="name" name="name" class="form-control" placeholder="Введите название" required>
+                        <input id="name" name="name" class="form-control" placeholder="Введите название" required value="{{ old('name') }}">
                         @error('name')
                         <div class="text-danger small">Заполните поле</div>
                         @enderror
@@ -45,7 +46,7 @@
                         <label>Тип способности:</label>
                         <select class="select2" name="type_ability[]" id="type_ability" multiple="multiple" data-placeholder="Выберите тип" style="width: 100%;">
                             @foreach ($typeAbilities as $type)
-                                <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                <option value="{{ $type->id }}" {{ in_array($type->id, old('type_ability', [])) ? 'selected' : '' }}>{{ $type->name }}</option>
                             @endforeach
                         </select>
                         @error('type_ability')
@@ -58,7 +59,7 @@
                         <select id="grade" class="form-control" name="class_id[]">
                             <option value="">Выберите класс</option>
                             @foreach($grades as $grade)
-                                <option value="{{ $grade->id }}">{{ $grade->name }}</option>
+                                <option value="{{ $grade->id }}" {{ in_array($grade->id, old('class_id', [])) ? 'selected' : '' }}>{{ $grade->name }}</option>
                             @endforeach
                         </select>
                         @error('class_id')
@@ -71,7 +72,7 @@
                         <select id="race" class="form-control" name="race_id[]">
                             <option value="">Выберите расу</option>
                             @foreach($races as $race)
-                                <option value="{{ $race->id }}">{{ $race->name }}</option>
+                                <option value="{{ $race->id }}" {{ in_array($race->id, old('race_id', [])) ? 'selected' : '' }}>{{ $race->name }}</option>
                             @endforeach
                         </select>
                         @error('race_id')
@@ -81,10 +82,9 @@
 
                     <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
-                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple"
-                                data-placeholder="Выберите куб" style="width: 100%;">
+                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple" data-placeholder="Выберите куб" style="width: 100%;">
                             @foreach($cubes as $cube)
-                                <option value="{{ $cube->id }}">{{ $cube->name }}</option>
+                                <option value="{{ $cube->id }}" {{ in_array($cube->id, old('condition', [])) ? 'selected' : '' }}>{{ $cube->name }}</option>
                             @endforeach
                         </select>
                         @error('condition')
@@ -94,8 +94,7 @@
 
                     <div class="form-group">
                         <label for="description">Описание навыка:</label>
-                        <textarea id="description" class="form-control" name="description" rows="5" style="resize: both;"
-                                  placeholder="Введите текст"></textarea>
+                        <textarea id="description" class="form-control" name="description" rows="5" style="resize: both;" placeholder="Введите текст">{{ old('description') }}</textarea>
                         @error('description')
                         <div class="text-danger">Заполните поле</div>
                         @enderror
@@ -114,11 +113,12 @@
             const raceContainer = document.getElementById('race-container');
             const cubeContainer = document.getElementById('cube-container');
 
+            // IDs для типов способностей
             const raceAbilityId = '1';
             const classAbilityId = '2';
             const cubeAbilityId = '3';
 
-
+            // Функция для обновления видимости элементов в зависимости от выбранных типов способностей
             function updateFieldsVisibility() {
                 const selectedAbilities = Array.from(abilityTypeSelect.selectedOptions).map(option => option.value);
 
@@ -131,6 +131,7 @@
 
             updateFieldsVisibility();
 
+            // Инициализация Select2
             $('.select2').select2();
         });
     </script>

@@ -14,8 +14,8 @@ class Race extends Model
         return $this->hasMany(Subrace::class, 'race_id');
     }
 
-    public function typeAbilities()
+    public function abilities()
     {
-        return $this->belongsToMany(TypeAbility::class, 'type_ability_races', 'races_id', 'type_ability_id');
+        return $this->belongsToMany(Ability::class, 'ability_races');
     }
 }

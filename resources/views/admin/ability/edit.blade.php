@@ -24,7 +24,8 @@
 
                     <div class="form-group mb-3">
                         <label for="name" class="form-label">Название:</label>
-                        <input id="name" name="name" class="form-control" placeholder="Введите название" value="{{ old('name', $ability->name) }}" required>
+                        <input id="name" name="name" class="form-control" placeholder="Введите название"
+                               value="{{ old('name', $ability->name) }}" required>
                         @error('name')
                         <div class="text-danger small">Заполните поле</div>
                         @enderror
@@ -32,7 +33,8 @@
 
                     <div class="form-group">
                         <label>Тип способности:</label>
-                        <select class="select2" name="type_ability[]" id="type_ability" multiple="multiple" data-placeholder="Выберите тип" style="width: 100%;">
+                        <select class="select2" name="type_ability[]" id="type_ability" multiple="multiple"
+                                data-placeholder="Выберите тип" style="width: 100%;">
                             @foreach ($typeAbilities as $type)
                                 <option value="{{ $type->id }}"
                                         @if(in_array($type->id, old('type_ability', $selectedTypeAbilities))) selected @endif>
@@ -48,10 +50,9 @@
                     <div class="form-group" id="class-container" style="display: none;">
                         <label for="grade">Выберите класс:</label>
                         <select id="grade" class="form-control" name="class_id[]" multiple="multiple">
-                            <option value="">Выберите класс</option>
                             @foreach($grades as $grade)
                                 <option value="{{ $grade->id }}"
-                                        @if(in_array($grade->id, old('class_id', $selectedGrades)))
+                                        @if(in_array($grade->id, old('class_id', $selectedGrades->toArray())))
                                             selected
                                     @endif>
                                     {{ $grade->name }}
@@ -63,17 +64,16 @@
                         @enderror
                     </div>
 
-
-
-
-
-
                     <div class="form-group" id="race-container" style="display: none;">
                         <label for="race">Выберите расу:</label>
-                        <select id="race" class="form-control" name="race_id[]">
-                            <option value="">Выберите расу</option>
+                        <select id="race" class="form-control" name="race_id[]" multiple="multiple">
                             @foreach($races as $race)
-                                <option value="{{ $race->id }}">{{ old('race', $race->name) }}</option>
+                                <option value="{{ $race->id }}"
+                                        @if(in_array($race->id, old('race_id', $selectedRaces->toArray())))
+                                            selected
+                                    @endif>
+                                    {{ $race->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('race_id')
@@ -83,10 +83,14 @@
 
                     <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
-                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple"
-                                data-placeholder="Выберите куб" style="width: 100%;">
+                        <select id="cube" class="form-control" name="condition[]" multiple="multiple">
                             @foreach($cubes as $cube)
-                                <option value="{{ $cube->id }}">{{ old('name', $cube->name) }}</option>
+                                <option value="{{ $cube->id }}"
+                                        @if(in_array($cube->id, old('condition', $selectedCubes->toArray())))
+                                            selected
+                                    @endif>
+                                    {{ $cube->name }}
+                                </option>
                             @endforeach
                         </select>
                         @error('condition')
@@ -96,7 +100,8 @@
 
                     <div class="form-group">
                         <label for="description">Описание навыка:</label>
-                        <textarea id="description" class="form-control" name="description" rows="5" style="resize: both;"
+                        <textarea id="description" class="form-control" name="description" rows="5"
+                                  style="resize: both;"
                                   placeholder="Введите текст">{{ old('description', $ability->description) }}</textarea>
                         @error('description')
                         <div class="text-danger">Заполните поле</div>

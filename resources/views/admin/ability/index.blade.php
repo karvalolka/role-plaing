@@ -3,75 +3,78 @@
 
 @section('content')
     <div class="container-fluid">
-        <table style="width: 100%;">
-            <tr>
-                <td style="text-align: right;">
-                    <nav aria-label="Breadcrumb">
-                        <ol style="display: inline; padding: 0; margin: 0; list-style: none;">
-                            <li style="display: inline; margin-left: 10px;">Навыки</li>
-                        </ol>
-                    </nav>
-                </td>
-            </tr>
-        </table>
-
-        <div class="row">
-            <div class="col-xl-2 col-md-6 mb-4">
+        <div class="row mb-4">
+            <div class="col-xl-2 col-md-6">
                 <a href="{{ route('admin.ability.create') }}" class="btn btn-block btn-primary">Добавить навык</a>
             </div>
-            <div class="col-xl-12 col-md-6 mb-4">
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 col-md-6">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Навыки</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
-                            <tbody>
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <h4 class="font-weight-bold">Принадлежность: <span style="color: blue;"></span></h4>
-                                        <hr class="my-3">
-                                        <div class="row">
+                        @if ($abilities->isEmpty())
+                            <p>Нет доступных навыков.</p>
+                        @else
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th style="width: 80%;">Название</th>
+                                    <th style="width: 10%; text-align: center;">Условия</th>
+                                    <th style="width: 10%; text-align: center;">Действия</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @foreach($abilities as $ability)
+                                    <tr>
+                                        <td>{{ $ability->name }}</td>
+                                        <td class="text-center">
+                                            @php
 
-                                                <h5 class="font-weight-bold">Условия: <span style="color: red;"></span></h5>
-                                                <div class="col-md-12">
-                                                    <div class="row">
-                                                        @foreach($abilities as $ability)
-                                                            <div class="col-md-6 mb-3">
-                                                                <div class="card p-3 border">
-                                                                    <div class="d-flex justify-content-between align-items-center">
-                                                                        <div>
-                                                                            <h5 class="mb-0">{{ $ability->name }}</h5>
-                                                                        </div>
-                                                                        <div class="d-flex align-items-center">
-                                                                            <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-link p-1">
-                                                                                <i class="far fa-eye"></i>
-                                                                            </a>
-                                                                            <a href="{{ route('admin.ability.edit', $ability->id) }}" class="btn btn-link text-success me-2">
-                                                                                <i class="fas fa-pencil-alt"></i>
-                                                                            </a>
-                                                                            <form action="{{ route('admin.ability.delete', $ability->id) }}" method="POST" class="d-inline">
-                                                                                @csrf
-                                                                                @method('delete')
-                                                                                <button type="submit" class="btn btn-link text-danger">
-                                                                                    <i class="fas fa-trash"></i>
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                                <hr class="my-4">
+                                                $races = array_unique($ability->races->pluck('name')->toArray());
+                                                $classes = array_unique($ability->grades->pluck('name')->toArray());
+                                                $cubes = array_unique($ability->cubes->pluck('name')->toArray());
+                                            @endphp
 
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="my-5">
-                            </tbody>
-                        </table>
+                                            <div class="d-flex flex-column">
+                                                @if ($races)
+                                                    <span class="badge bg-info mb-1"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
+                                                @endif
+
+                                                @if ($classes)
+                                                    <span class="badge bg-warning mb-1"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
+                                                @endif
+
+                                                @if ($cubes)
+                                                    <span class="badge bg-success mb-1"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
+                                                @endif
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-link p-1" title="Просмотр">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                                <a href="{{ route('admin.ability.edit', $ability->id) }}" class="btn btn-link text-success me-2" title="Редактировать">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                </a>
+                                                <form action="{{ route('admin.ability.delete', $ability->id) }}" method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-link text-danger" title="Удалить">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        @endif
                     </div>
                 </div>
             </div>

@@ -13,19 +13,18 @@ class TypeAbility extends Model
     {
         return $this->belongsToMany(Ability::class, 'ability_type_abilities', 'type_abilities_id', 'ability_id');
     }
+    public function grades()
+    {
+        return $this->belongsToMany(Grade::class, 'ability_grades', 'ability_id', 'grade_id');
+    }
 
     public function races()
     {
-        return $this->belongsToMany(Race::class, 'type_ability_races', 'type_ability_id', 'races_id');
-    }
-
-    public function grades()
-    {
-        return $this->belongsToMany(Grade::class, 'type_ability_grades', 'type_ability_id', 'grades_id');
+        return $this->belongsToMany(Race::class, 'ability_races', 'ability_id', 'race_id');
     }
 
     public function cubes()
     {
-        return $this->belongsToMany(Cube::class, 'type_ability_cubes', 'type_ability_id', 'cubes_id');
+        return $this->belongsToMany(Cube::class, 'ability_cubes', 'ability_id', 'cube_id');
     }
 }
