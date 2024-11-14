@@ -46,15 +46,28 @@
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2">Условия</td>
-                                <td>@if(!empty($ability->condition))
-                                            <?php
-                                            $conditions = json_decode($ability->condition);
-                                            $conditionNames = array_map(function($value) {
-                                                return Ability::getConditionName($value);
-                                            }, (array)$conditions);
-                                            ?>
-                                        <small>{{ implode(', ', $conditionNames) }}</small>
-                                    @endif</td>
+                                <td class="text-center">
+                                    @php
+
+                                        $races = array_unique($ability->races->pluck('name')->toArray());
+                                        $classes = array_unique($ability->grades->pluck('name')->toArray());
+                                        $cubes = array_unique($ability->cubes->pluck('name')->toArray());
+                                    @endphp
+
+                                    <div class="d-flex flex-column">
+                                        @if ($races)
+                                            <span class="badge bg-info mb-1"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
+                                        @endif
+
+                                        @if ($classes)
+                                            <span class="badge bg-warning mb-1"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
+                                        @endif
+
+                                        @if ($cubes)
+                                            <span class="badge bg-success mb-1"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
+                                        @endif
+                                    </div>
+                                </td>
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2">Описание</td>

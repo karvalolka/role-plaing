@@ -19,61 +19,58 @@
                         @if ($abilities->isEmpty())
                             <p>Нет доступных навыков.</p>
                         @else
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th style="width: 80%;">Название</th>
-                                    <th style="width: 10%; text-align: center;">Условия</th>
-                                    <th style="width: 10%; text-align: center;">Действия</th>
-                                </tr>
-                                </thead>
-                                <tbody>
+                            <div class="row">
                                 @foreach($abilities as $ability)
-                                    <tr>
-                                        <td>{{ $ability->name }}</td>
-                                        <td class="text-center">
-                                            @php
+                                    <div class="col-md-4 mb-4">
+                                        <div class="card shadow-sm border-light rounded">
+                                            <div class="card-body">
+                                                <!-- Название навыка -->
+                                                <h5 class="card-title text-dark font-weight-bold">{{ $ability->name }}</h5>
 
-                                                $races = array_unique($ability->races->pluck('name')->toArray());
-                                                $classes = array_unique($ability->grades->pluck('name')->toArray());
-                                                $cubes = array_unique($ability->cubes->pluck('name')->toArray());
-                                            @endphp
+                                                <!-- Условия (выровненные по правому краю) -->
+                                                <div class="d-flex flex-wrap justify-content-end mb-3">
+                                                    @php
+                                                        $races = array_unique($ability->races->pluck('name')->toArray());
+                                                        $classes = array_unique($ability->grades->pluck('name')->toArray());
+                                                        $cubes = array_unique($ability->cubes->pluck('name')->toArray());
+                                                    @endphp
 
-                                            <div class="d-flex flex-column">
-                                                @if ($races)
-                                                    <span class="badge bg-info mb-1"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
-                                                @endif
+                                                    @if ($races)
+                                                        <span class="badge bg-info me-2 mb-1"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
+                                                    @endif
 
-                                                @if ($classes)
-                                                    <span class="badge bg-warning mb-1"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
-                                                @endif
+                                                    @if ($classes)
+                                                        <span class="badge bg-warning me-2 mb-1"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
+                                                    @endif
 
-                                                @if ($cubes)
-                                                    <span class="badge bg-success mb-1"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
-                                                @endif
+                                                    @if ($cubes)
+                                                        <span class="badge bg-success me-2 mb-1"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-center">
-                                                <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-link p-1" title="Просмотр">
-                                                    <i class="far fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('admin.ability.edit', $ability->id) }}" class="btn btn-link text-success me-2" title="Редактировать">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                                <form action="{{ route('admin.ability.delete', $ability->id) }}" method="POST" class="d-inline">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-link text-danger" title="Удалить">
-                                                        <i class="fas fa-trash"></i>
-                                                    </button>
-                                                </form>
+
+                                            <!-- Кнопки действий (по центру) -->
+                                            <div class="card-footer text-center bg-light">
+                                                <div class="d-flex justify-content-center">
+                                                    <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-outline-primary p-1 mx-1" title="Просмотр">
+                                                        <i class="far fa-eye"></i> <span class="d-none d-md-inline">Просмотр</span>
+                                                    </a>
+                                                    <a href="{{ route('admin.ability.edit', $ability->id) }}" class="btn btn-outline-success p-1 mx-1" title="Редактировать">
+                                                        <i class="fas fa-pencil-alt"></i> <span class="d-none d-md-inline">Редактировать</span>
+                                                    </a>
+                                                    <form action="{{ route('admin.ability.delete', $ability->id) }}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="btn btn-outline-danger p-1 mx-1" title="Удалить">
+                                                            <i class="fas fa-trash"></i> <span class="d-none d-md-inline">Удалить</span>
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </td>
-                                    </tr>
+                                        </div>
+                                    </div>
                                 @endforeach
-                                </tbody>
-                            </table>
+                            </div>
                         @endif
                     </div>
                 </div>

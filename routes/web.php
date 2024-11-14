@@ -9,6 +9,13 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Patch\{CreatePatchController,
+    DeletePatchController,
+    EditPatchController,
+    PatchController,
+    StorePatchController,
+    UpdatePatchController
+};
 use App\Http\Controllers\Admin\Cube\{CreateCubeController,
     CubeController,
     DeleteCubeController,
@@ -176,6 +183,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/{typeAbility}/edit', [EditTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.edit');
         Route::patch('/{typeAbility}', [UpdateTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.update');
         Route::delete('/{typeAbility}', [DeleteTypeAbilityController::class, '__invoke'])->name('admin.typeAbility.delete');
+    });
+
+    Route::prefix('patch')->group(function () {
+        Route::get('/', [PatchController::class, '__invoke'])->name('admin.patch.index');
+        Route::get('/create', [CreatePatchController::class, '__invoke'])->name('admin.patch.create');
+        Route::post('/', [StorePatchController::class, '__invoke'])->name('admin.patch.store');
+        Route::get('/{patch}/edit', [EditPatchController::class, '__invoke'])->name('admin.patch.edit');
+        Route::patch('/{patch}', [UpdatePatchController::class, '__invoke'])->name('admin.patch.update');
+        Route::delete('/{patch}', [DeletePatchController::class, '__invoke'])->name('admin.patch.delete');
     });
 
     Route::prefix('cube')->group(function () {

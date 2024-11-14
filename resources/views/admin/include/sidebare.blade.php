@@ -84,6 +84,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.patch.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-wrench"></i>
+                                <p>
+                                    Патчи
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-header">Вспомогательные</li>
 
