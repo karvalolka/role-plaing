@@ -69,8 +69,7 @@
 
                     <div class="form-group" id="race-container" style="display: none;">
                         <label for="race">Выберите расу:</label>
-                        <select id="race" class="form-control" name="race_id[]">
-                            <option value="">Выберите расу</option>
+                        <select id="race" class="select2 form-control" name="race_id[]" multiple="multiple" data-placeholder="Выберите расу" style="width: 100%;">
                             @foreach($races as $race)
                                 <option value="{{ $race->id }}" {{ in_array($race->id, old('race_id', [])) ? 'selected' : '' }}>{{ $race->name }}</option>
                             @endforeach

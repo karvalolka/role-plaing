@@ -6,10 +6,8 @@
                 <td style="text-align: right;">
                     <nav aria-label="Breadcrumb">
                         <ol style="display: inline; padding: 0; margin: 0; list-style: none;">
-
                             <li style="display: inline; margin-left: 10px;"><a href="{{route('admin.cube.index')}}">D6</a>
                             </li>
-
                         </ol>
                     </nav>
                 </td>
@@ -25,7 +23,6 @@
                     <div class="form-group">
                         <label for="story">Введите число</label>
                         <input type="number" class="form-control" name="name" value="{{ old('name') }}" placeholder="Введите число" required>
-
                         @error('name')
                         <div class="text-danger">Заполните поле корректно</div>
                         @enderror
