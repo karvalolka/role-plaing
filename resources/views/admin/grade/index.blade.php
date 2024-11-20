@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-5 md-3 mb-4">
+            <div class="col-4 md-3 mb-4">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Классы</h3>
@@ -27,8 +27,7 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th style="text-align: center;">Название</th>
-                                <th style="text-align: center;">Подклассы</th>
+                                <th>Название</th>
                                 <th style="width: 20%; text-align: center;">Действия</th>
                             </tr>
                             </thead>
@@ -36,14 +35,6 @@
                             @foreach($grades as $grade)
                                 <tr>
                                     <td>{{ $grade->name }}</td>
-                                    <td style="text-align: center;">
-                                        @if($grade->subgrades->isEmpty())
-                                            -
-                                        @else
-                                            {{ $grade->subgrades->pluck('name')->implode(', ') }}
-                                        @endif
-                                    </td>
-
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center gap-2">
                                             <a href="{{ route('admin.grade.edit', $grade->id) }}"

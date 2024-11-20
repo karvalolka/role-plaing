@@ -9,7 +9,7 @@ class AbilityController extends Controller
 {
     public function __invoke()
     {
-        $abilities = Ability::all();
+        $abilities = Ability::orderBy('name', 'asc')->get();
         return view('admin.ability.index', compact('abilities'));
     }
 }

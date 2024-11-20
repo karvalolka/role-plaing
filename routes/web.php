@@ -140,15 +140,6 @@ Route::prefix('admin')->group(function () {
         Route::delete('/{ability}', [DeleteAbilityController::class, '__invoke'])->name('admin.ability.delete');
     });
 
-    Route::prefix('subrace')->group(function () {
-        Route::get('/', [SubraceController::class, '__invoke'])->name('admin.subrace.index');
-        Route::get('/create', [CreateSubraceController::class, '__invoke'])->name('admin.subrace.create');
-        Route::post('/', [StoreSubraceController::class, '__invoke'])->name('admin.subrace.store');
-        Route::get('/{subrace}/edit', [EditSubraceController::class, '__invoke'])->name('admin.subrace.edit');
-        Route::patch('/{subrace}', [UpdateSubraceController::class, '__invoke'])->name('admin.subrace.update');
-        Route::delete('/{subrace}', [DeleteSubraceController::class, '__invoke'])->name('admin.subrace.delete');
-    });
-
     Route::prefix('race')->group(function () {
         Route::get('/', [RaceController::class, '__invoke'])->name('admin.race.index');
         Route::get('/create', [CreateRaceController::class, '__invoke'])->name('admin.race.create');
@@ -165,15 +156,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/{grade}/edit', [EditGradeController::class, '__invoke'])->name('admin.grade.edit');
         Route::patch('/{grade}', [UpdateGradeController::class, '__invoke'])->name('admin.grade.update');
         Route::delete('/{grade}', [DeleteGradeController::class, '__invoke'])->name('admin.grade.delete');
-    });
-
-    Route::prefix('subgrade')->group(function () {
-        Route::get('/', [SubgradeController::class, '__invoke'])->name('admin.subgrade.index');
-        Route::get('/create', [CreateSubgradeController::class, '__invoke'])->name('admin.subgrade.create');
-        Route::post('/', [StoreSubgradeController::class, '__invoke'])->name('admin.subgrade.store');
-        Route::get('/{subgrade}/edit', [EditSubgradeController::class, '__invoke'])->name('admin.subgrade.edit');
-        Route::patch('/{subgrade}', [UpdateSubgradeController::class, '__invoke'])->name('admin.subgrade.update');
-        Route::delete('/{subgrade}', [DeleteSubgradeController::class, '__invoke'])->name('admin.subgrade.delete');
     });
 
     Route::prefix('typeAbility')->group(function () {

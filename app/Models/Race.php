@@ -9,11 +9,6 @@ class Race extends Model
     protected $table = 'races';
     protected $guarded = false;
 
-    public function subraces()
-    {
-        return $this->hasMany(Subrace::class, 'race_id');
-    }
-
     public function abilities()
     {
         return $this->belongsToMany(Ability::class, 'ability_races');

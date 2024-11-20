@@ -53,26 +53,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('admin.subrace.index')}}" class="nav-link">
-                                <i class="nav-icon fab fa-ravelry"></i>
-                                <p>
-                                    Подрасы
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{route('admin.race.index')}}" class="nav-link">
                                 <i class="nav-icon fas fa-registered"></i>
                                 <p>
                                     Расы
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{route('admin.subgrade.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-graduation-cap"></i>
-                                <p>
-                                    Подклассы
                                 </p>
                             </a>
                         </li>
@@ -97,7 +81,7 @@
 
                         <li class="nav-item">
                             <a href="{{route('admin.typeAbility.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <i class="nav-icon fas fa-book-open"></i>
                                 <p>
                                     Типы навыков
                                 </p>
@@ -105,7 +89,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.cube.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-user-graduate"></i>
+                                <i class="nav-icon fas fa-dice-d6"></i>
                                 <p>
                                      D6
                                 </p>

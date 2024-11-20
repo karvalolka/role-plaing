@@ -9,10 +9,6 @@ class Grade extends Model
     protected $table = 'grades';
     protected $guarded = false;
 
-    public function subgrades()
-    {
-        return $this->hasMany(Subgrade::class, 'grade_id');
-    }
 
     public function abilities()
     {

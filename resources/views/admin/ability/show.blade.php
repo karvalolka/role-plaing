@@ -18,11 +18,11 @@
             </tr>
         </table>
         <div class="row">
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="auto-width mb-4">
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h3 class="card-title mb-0">{{ $ability->name }}</h3>
-                        <div class="d-flex align-items-center">
+                        <div class="d-flex ml-auto">
                             <a href="{{ route('admin.ability.edit', $ability->id) }}" class="text-success mr-2">
                                 <i class="fas fa-pencil-alt"></i>
                             </a>

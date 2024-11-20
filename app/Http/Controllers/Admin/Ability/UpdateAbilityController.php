@@ -48,7 +48,7 @@ class UpdateAbilityController extends Controller
             $ability->cubes()->sync($validatedData['condition']);
         }
 
-        $abilities = Ability::all();
+        $abilities = Ability::orderBy('name', 'asc')->get();
 
         return view('admin.ability.index', compact('ability', 'abilities'));
     }

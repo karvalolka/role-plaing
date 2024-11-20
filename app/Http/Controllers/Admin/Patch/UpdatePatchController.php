@@ -15,7 +15,7 @@ class UpdatePatchController extends Controller
             'description' => 'required|string',
         ]);
         $patch->update($data);
-        $patches = Patch::all();
+        $patches = Patch::orderBy('created_at', 'desc')->get();
 
         return view('admin.patch.index', compact('patch', 'patches'));
     }

@@ -56,8 +56,7 @@
 
                     <div class="form-group" id="class-container" style="display: none;">
                         <label for="grade">Выберите класс:</label>
-                        <select id="grade" class="form-control" name="class_id[]">
-                            <option value="">Выберите класс</option>
+                        <select id="grade" class="select2 form-control" name="class_id[]" multiple="multiple">
                             @foreach($grades as $grade)
                                 <option value="{{ $grade->id }}" {{ in_array($grade->id, old('class_id', [])) ? 'selected' : '' }}>{{ $grade->name }}</option>
                             @endforeach
@@ -69,7 +68,7 @@
 
                     <div class="form-group" id="race-container" style="display: none;">
                         <label for="race">Выберите расу:</label>
-                        <select id="race" class="select2 form-control" name="race_id[]" multiple="multiple" data-placeholder="Выберите расу" style="width: 100%;">
+                        <select id="race" class="select2 form-control" name="race_id[]" multiple="multiple" style="width: 100%;">
                             @foreach($races as $race)
                                 <option value="{{ $race->id }}" {{ in_array($race->id, old('race_id', [])) ? 'selected' : '' }}>{{ $race->name }}</option>
                             @endforeach

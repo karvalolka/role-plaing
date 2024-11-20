@@ -24,10 +24,8 @@
                                     <div class="col-md-4 mb-4">
                                         <div class="card shadow-sm border-light rounded">
                                             <div class="card-body">
-                                                <!-- Название навыка -->
                                                 <h5 class="card-title text-dark font-weight-bold">{{ $ability->name }}</h5>
 
-                                                <!-- Условия (выровненные по правому краю) -->
                                                 <div class="d-flex flex-wrap justify-content-end mb-3">
                                                     @php
                                                         $races = array_unique($ability->races->pluck('name')->toArray());
@@ -36,20 +34,19 @@
                                                     @endphp
 
                                                     @if ($races)
-                                                        <span class="badge bg-info me-2 mb-1"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
+                                                        <span class="badge bg-info me-2 mb-1" style="max-width: 100%; word-wrap: break-word; white-space: normal;"><i class="fas fa-users"></i> {{ implode(', ', $races) }}</span>
                                                     @endif
 
                                                     @if ($classes)
-                                                        <span class="badge bg-warning me-2 mb-1"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
+                                                        <span class="badge bg-warning me-2 mb-1" style="max-width: 100%; word-wrap: break-word; white-space: normal;"><i class="fas fa-chalkboard-teacher"></i> {{ implode(', ', $classes) }}</span>
                                                     @endif
 
                                                     @if ($cubes)
-                                                        <span class="badge bg-success me-2 mb-1"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
+                                                        <span class="badge bg-success me-2 mb-1" style="max-width: 100%; word-wrap: break-word; white-space: normal;"><i class="fas fa-dice"></i> {{ implode(', ', $cubes) }}</span>
                                                     @endif
                                                 </div>
                                             </div>
 
-                                            <!-- Кнопки действий (по центру) -->
                                             <div class="card-footer text-center bg-light">
                                                 <div class="d-flex justify-content-center">
                                                     <a href="{{ route('admin.ability.show', $ability->id) }}" class="btn btn-outline-primary p-1 mx-1" title="Просмотр">
