@@ -14,4 +14,9 @@ class Grade extends Model
     {
         return $this->belongsToMany(Ability::class, 'ability_grades');
     }
+
+    public function skills()
+    {
+        return $this->belongsToMany(Skill::class, 'skills_grades');
+    }
 }

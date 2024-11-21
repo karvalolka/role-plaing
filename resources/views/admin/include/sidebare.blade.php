@@ -76,6 +76,14 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('admin.skill.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-wrench"></i>
+                                <p>
+                                    Способности
+                                </p>
+                            </a>
+                        </li>
 
                         <li class="nav-header">Вспомогательные</li>
 

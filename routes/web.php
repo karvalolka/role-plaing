@@ -9,6 +9,13 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Skill\{CreateSkillController,
+    DeleteSkillController,
+    EditSkillController,
+    ShowSkillController,
+    SkillController,
+    StoreSkillController,
+    UpdateSkillController};
 use App\Http\Controllers\Admin\Patch\{CreatePatchController,
     DeletePatchController,
     EditPatchController,
@@ -64,20 +71,6 @@ use App\Http\Controllers\Admin\Race\{CreateRaceController,
     RaceController,
     StoreRaceController,
     UpdateRaceController
-};
-use App\Http\Controllers\Admin\Subgrade\{CreateSubgradeController,
-    DeleteSubgradeController,
-    EditSubgradeController,
-    StoreSubgradeController,
-    SubgradeController,
-    UpdateSubgradeController
-};
-use App\Http\Controllers\Admin\Subrace\{CreateSubraceController,
-    DeleteSubraceController,
-    EditSubraceController,
-    StoreSubraceController,
-    SubraceController,
-    UpdateSubraceController
 };
 use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
     DeleteTypeAbilityController,
@@ -183,6 +176,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/{cube}/edit', [EditCubeController::class, '__invoke'])->name('admin.cube.edit');
         Route::patch('/{cube}', [UpdateCubeController::class, '__invoke'])->name('admin.cube.update');
         Route::delete('/{cube}', [DeleteCubeController::class, '__invoke'])->name('admin.cube.delete');
+    });
+
+    Route::prefix('skill')->group(function () {
+        Route::get('/', [SkillController::class, '__invoke'])->name('admin.skill.index');
+        Route::get('/create', [CreateSkillController::class, '__invoke'])->name('admin.skill.create');
+        Route::post('/', [StoreSkillController::class, '__invoke'])->name('admin.skill.store');
+        Route::get('/{skill}', [ShowSkillController::class, '__invoke'])->name('admin.skill.show');
+        Route::get('/{skill}/edit', [EditSkillController::class, '__invoke'])->name('admin.skill.edit');
+        Route::patch('/{skill}', [UpdateSkillController::class, '__invoke'])->name('admin.skill.update');
+        Route::delete('/{skill}', [DeleteSkillController::class, '__invoke'])->name('admin.skill.delete');
     });
 });
 
