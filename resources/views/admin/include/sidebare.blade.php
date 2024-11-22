@@ -78,7 +78,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{route('admin.skill.index')}}" class="nav-link">
-                                <i class="nav-icon fas fa-wrench"></i>
+                                <i class="nav-icon  fas fa-book-dead"></i>
                                 <p>
                                     Способности
                                 </p>

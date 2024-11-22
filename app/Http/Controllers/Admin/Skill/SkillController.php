@@ -9,7 +9,9 @@ class SkillController extends Controller
 {
     public function __invoke()
     {
-        $skills = Skill::all();
-        return view('admin.skill.index', compact('skills'));
+        $skills = Skill::with('grades')->get();
+        $groupedSkills = $skills->groupBy(function ($skill) {
+            return $skill->grades->first()->name;
+        });        return view('admin.skill.index', compact('skills', 'groupedSkills'));
     }
 }
