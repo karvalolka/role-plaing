@@ -9,6 +9,12 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\User\{CreateUserController,
+    DeleteUserController,
+    EditUserController,
+    StoreUserController,
+    UpdateUserController,
+    UserController};
 use App\Http\Controllers\Admin\Skill\{CreateSkillController,
     DeleteSkillController,
     EditSkillController,
@@ -186,6 +192,15 @@ Route::prefix('admin')->group(function () {
         Route::get('/{skill}/edit', [EditSkillController::class, '__invoke'])->name('admin.skill.edit');
         Route::patch('/{skill}', [UpdateSkillController::class, '__invoke'])->name('admin.skill.update');
         Route::delete('/{skill}', [DeleteSkillController::class, '__invoke'])->name('admin.skill.delete');
+    });
+
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, '__invoke'])->name('admin.user.index');
+        Route::get('/create', [CreateUserController::class, '__invoke'])->name('admin.user.create');
+        Route::post('/', [StoreUserController::class, '__invoke'])->name('admin.user.store');
+        Route::get('/{user}/edit', [EditUserController::class, '__invoke'])->name('admin.user.edit');
+        Route::patch('/{user}', [UpdateUserController::class, '__invoke'])->name('admin.user.update');
+        Route::delete('/{user}', [DeleteUserController::class, '__invoke'])->name('admin.user.delete');
     });
 });
 
