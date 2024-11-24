@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\User\{CreateUserController,
     DeleteUserController,
     EditUserController,
@@ -91,8 +92,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
-    Route::get('/', AdminController::class);
+Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
+    Route::get('/', [AdminController::class, '__invoke'])->name('admin.main.index');
     Route::prefix('lore')->group(function () {
         Route::get('/', [LoreController::class, '__invoke'])->name('admin.lore.index');
         Route::get('/create', [CreateLoreController::class, '__invoke'])->name('admin.lore.create');
