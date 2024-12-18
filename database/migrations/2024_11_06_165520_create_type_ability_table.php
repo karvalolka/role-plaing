@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('type_abilities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('name');
+            $table->string('name');
             $table->timestamps();
         });
     }

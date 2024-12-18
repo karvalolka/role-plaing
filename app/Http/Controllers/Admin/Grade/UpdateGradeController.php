@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 
 class UpdateGradeController extends Controller
 {
-    public function __invoke(Request $request, Grade $garde)
+    public function __invoke(Request $request, Grade $grade)
     {
         $data = $request->validate([
             'name' => 'required|string',
         ]);
 
-        $garde->update($data);
-        $gardes = Grade::all();
-        return redirect()->route('admin.garde.index', compact('gardes'));
+        $grade->update($data);
+        $grades = Grade::all();
+        return redirect()->route('admin.grade.index', compact('grades'));
     }
 }

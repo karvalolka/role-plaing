@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::dropIfExists('type_ability_grades');
-
-        Schema::create('ability_grades', function (Blueprint $table) {
+        Schema::create('ability_cubes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ability_id')->constrained()->onDelete('cascade');
-            $table->foreignId('grade_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cube_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,12 +24,12 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ability_grades');
+        Schema::dropIfExists('ability_cubes');
 
-        Schema::create('type_ability_grades', function (Blueprint $table) {
+        Schema::create('type_ability_cubes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('type_ability_id')->constrained()->onDelete('cascade');
-            $table->foreignId('grades_id')->constrained()->onDelete('cascade');
+            $table->foreignId('cubes_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

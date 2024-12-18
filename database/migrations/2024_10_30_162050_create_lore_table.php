@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('lore', function (Blueprint $table) {
             $table->id();
+            $table->string('era')->nullable();
             $table->text('text');
             $table->timestamps();
         });

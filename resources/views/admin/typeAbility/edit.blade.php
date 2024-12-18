@@ -26,7 +26,7 @@
                         class="form-control"
                         name="name"
                         placeholder="Введите число"
-                        value="{{ old('name', $cube->name) }}"
+                        value="{{ old('name', $typeAbility->name) }}"
                         required
                     >
 

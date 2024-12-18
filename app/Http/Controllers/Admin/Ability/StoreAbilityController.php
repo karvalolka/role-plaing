@@ -22,8 +22,8 @@ class StoreAbilityController extends Controller
             'class_id.*' => 'nullable|exists:grades,id',
             'race_id' => 'nullable|array',
             'race_id.*' => 'nullable|exists:races,id',
-            'condition' => 'nullable|array',
-            'condition.*' => 'nullable|exists:cubes,id',
+            'cube_id' => 'nullable|array',
+            'cube_id.*' => 'nullable|exists:cubes,id',
         ]);
 
         $ability = Ability::create([

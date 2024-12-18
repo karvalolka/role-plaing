@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('condition')->unsigned();
             $table->text('description');
-            $table->enum('class_race', ['class', 'race', 'other']);
             $table->timestamps();
         });
     }

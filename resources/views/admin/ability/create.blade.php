@@ -80,12 +80,12 @@
 
                     <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
-                        <select id="cube" class="select2 form-control" name="condition[]" multiple="multiple" data-placeholder="Выберите куб" style="width: 100%;">
+                        <select id="cube" class="select2 form-control" name="cube_id[]" multiple="multiple" data-placeholder="Выберите куб" style="width: 100%;">
                             @foreach($cubes as $cube)
-                                <option value="{{ $cube->id }}" {{ in_array($cube->id, old('condition', [])) ? 'selected' : '' }}>{{ $cube->name }}</option>
+                                <option value="{{ $cube->id }}" {{ in_array($cube->id, old('cube_id', [])) ? 'selected' : '' }}>{{ $cube->name }}</option>
                             @endforeach
                         </select>
-                        @error('condition')
+                        @error('cube_id')
                         <div class="text-danger">Пожалуйста, выберите значения куба</div>
                         @enderror
                     </div>

@@ -83,10 +83,10 @@
 
                     <div class="form-group" id="cube-container" style="display: none;">
                         <label for="cube">Выберите куб:</label>
-                        <select id="cube" class="form-control" name="condition[]" multiple="multiple">
+                        <select id="cube" class="form-control" name="cube_id[]" multiple="multiple">
                             @foreach($cubes as $cube)
                                 <option value="{{ $cube->id }}"
-                                        @if(in_array($cube->id, old('condition', $selectedCubes->toArray())))
+                                        @if(in_array($cube->id, old('cube_id', $selectedCubes->toArray())))
                                             selected
                                     @endif>
                                     {{ $cube->name }}
