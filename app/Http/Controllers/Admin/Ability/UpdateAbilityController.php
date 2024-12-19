@@ -4,9 +4,6 @@ namespace App\Http\Controllers\Admin\Ability;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ability;
-use App\Models\Grade;
-use App\Models\Race;
-use App\Models\Cube;
 use Illuminate\Http\Request;
 
 class UpdateAbilityController extends Controller
@@ -23,31 +20,34 @@ class UpdateAbilityController extends Controller
             'class_id.*' => 'nullable|exists:grades,id',
             'race_id' => 'nullable|array',
             'race_id.*' => 'nullable|exists:races,id',
-            'condition' => 'nullable|array',
-            'condition.*' => 'nullable|exists:cubes,id',
+            'cube_id' => 'nullable|array',
+            'cube_id.*' => 'nullable|exists:cubes,id',
         ]);
-
 
         $ability->update([
             'name' => $validatedData['name'],
             'description' => $validatedData['description']
         ]);
 
-
         $ability->typeAbilities()->sync($validatedData['type_ability']);
 
         if (!empty($validatedData['race_id'])) {
             $ability->races()->sync($validatedData['race_id']);
+        } else {
+            $ability->races()->detach();
         }
 
         if (!empty($validatedData['class_id'])) {
             $ability->grades()->sync($validatedData['class_id']);
+        } else {
+            $ability->grades()->detach();
         }
 
-        if (!empty($validatedData['condition'])) {
-            $ability->cubes()->sync($validatedData['condition']);
+        if (!empty($validatedData['cube_id'])) {
+            $ability->cubes()->sync($validatedData['cube_id']);
+        } else {
+            $ability->cubes()->detach();
         }
-
         $abilities = Ability::orderBy('name', 'asc')->get();
 
         return view('admin.ability.index', compact('ability', 'abilities'));

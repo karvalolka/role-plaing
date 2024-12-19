@@ -21,6 +21,15 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{route('admin.char.index')}}" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                    Персонажи
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-header">Основа</li>
 
                         <li class="nav-item">

@@ -48,8 +48,8 @@ class StoreAbilityController extends Controller
             }
         }
 
-        if (isset($validatedData['condition'])) {
-            $validCubeIds = Cube::whereIn('id', $validatedData['condition'])->pluck('id')->toArray();
+        if (isset($validatedData['cube_id'])) {
+            $validCubeIds = Cube::whereIn('id', $validatedData['cube_id'])->pluck('id')->toArray();
             if (!empty($validCubeIds)) {
                 $ability->cubes()->sync($validCubeIds);
             }

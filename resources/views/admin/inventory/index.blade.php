@@ -22,20 +22,24 @@
                         <h3 class="card-title">Инвентарь</h3>
                     </div>
                     <div class="card-body">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered" style="table-layout: fixed;">
                             <thead>
                             <tr>
-                                <th>значение кубика</th>
-                                <th>предметы</th>
-                                <th class="text-center">Действия</th>
+                                <th class="text-center col-1">Значение кости</th>
+                                <th>Предметы</th>
+                                <th class="text-center col-1">Действия</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($inventories as $inventory)
                                 <tr>
-                                    <td class="text-center">{{ $inventory->cube }}</td>
-                                    <td>{{ $inventory->structure }}</td>
-                                    <td class="text-center">
+                                    <td class="text-center" style="padding-top: 5px; padding-bottom: 5px;">{{ $inventory->cube }}</td>
+                                    <td style="padding-top: 5px; padding-bottom: 5px;">
+                                        @foreach(explode("\n", $inventory->structure) as $line)
+                                            <p>{{ $line }}</p>
+                                        @endforeach
+                                    </td>
+                                    <td class="text-center" style="padding-top: 5px; padding-bottom: 5px;">
                                         <div class="d-flex justify-content-center align-items-center gap-2">
                                             <a href="{{ route('admin.inventory.edit', $inventory->id) }}" class="btn btn-link text-success p-1">
                                                 <i class="fas fa-pencil-alt"></i>

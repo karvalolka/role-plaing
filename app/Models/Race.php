@@ -13,4 +13,9 @@ class Race extends Model
     {
         return $this->belongsToMany(Ability::class, 'ability_races');
     }
+
+    public function chars()
+    {
+        return $this->hasMany(Char::class);
+    }
 }

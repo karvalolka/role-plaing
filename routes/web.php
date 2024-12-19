@@ -9,6 +9,13 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\Char\{CharController,
+    CreateCharController,
+    DeleteCharController,
+    EditCharController,
+    ShowCharController,
+    StoreCharController,
+    UpdateCharController};
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\User\{CreateUserController,
     DeleteUserController,
@@ -202,6 +209,16 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
         Route::get('/{user}/edit', [EditUserController::class, '__invoke'])->name('admin.user.edit');
         Route::patch('/{user}', [UpdateUserController::class, '__invoke'])->name('admin.user.update');
         Route::delete('/{user}', [DeleteUserController::class, '__invoke'])->name('admin.user.delete');
+    });
+
+    Route::prefix('char')->group(function () {
+        Route::get('/', [CharController::class, '__invoke'])->name('admin.char.index');
+        Route::get('/create', [CreateCharController::class, '__invoke'])->name('admin.char.create');
+        Route::post('/', [StoreCharController::class, '__invoke'])->name('admin.char.store');
+        Route::get('/{char}', [ShowCharController::class, '__invoke'])->name('admin.char.show');
+        Route::get('/{char}/edit', [EditCharController::class, '__invoke'])->name('admin.char.edit');
+        Route::patch('/{char}', [UpdateCharController::class, '__invoke'])->name('admin.char.update');
+        Route::delete('/{char}', [DeleteCharController::class, '__invoke'])->name('admin.char.delete');
     });
 });
 

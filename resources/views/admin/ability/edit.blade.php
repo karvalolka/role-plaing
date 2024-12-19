@@ -125,20 +125,48 @@
             const classAbilityId = '2';
             const cubeAbilityId = '3';
 
+            const classSelect = document.getElementById('grade');
+            const raceSelect = document.getElementById('race');
+            const cubeSelect = document.getElementById('cube');
 
             function updateFieldsVisibility() {
                 const selectedAbilities = Array.from(abilityTypeSelect.selectedOptions).map(option => option.value);
 
+                // Показываем/скрываем дополнительные поля в зависимости от выбранных типов
                 classContainer.style.display = selectedAbilities.includes(classAbilityId) ? 'block' : 'none';
                 raceContainer.style.display = selectedAbilities.includes(raceAbilityId) ? 'block' : 'none';
                 cubeContainer.style.display = selectedAbilities.includes(cubeAbilityId) ? 'block' : 'none';
+
+                // Если типы изменились, сбрасываем скрытые поля (классы, расы, кубы)
+                if (!selectedAbilities.includes(classAbilityId)) {
+                    // Очищаем класс
+                    classSelect.value = null;
+                }
+                if (!selectedAbilities.includes(raceAbilityId)) {
+                    // Очищаем расу
+                    raceSelect.value = null;
+                }
+                if (!selectedAbilities.includes(cubeAbilityId)) {
+                    // Очищаем куб
+                    cubeSelect.value = null;
+                }
             }
 
-            abilityTypeSelect.addEventListener('change', updateFieldsVisibility);
+            abilityTypeSelect.addEventListener('change', function () {
+                updateFieldsVisibility();
 
-            updateFieldsVisibility();
+                // Обновляем значения в select2
+                const selectedValues = Array.from(abilityTypeSelect.selectedOptions).map(option => option.value);
+                // Сбрасываем все выбраны или очищаем ненужные значения
+                $('select[name="type_ability[]"]').val(selectedValues).trigger('change');
+            });
 
+            // Инициализация select2
             $('.select2').select2();
+
+            // Инициализация видимости полей на основе текущих выбранных типов
+            updateFieldsVisibility();
         });
+
     </script>
 @endsection

@@ -8,4 +8,9 @@ class Inventory extends Model
 {
     protected $table = 'inventories';
     protected $guarded = false;
+
+    public function chars()
+    {
+        return $this->hasMany(Char::class);
+    }
 }

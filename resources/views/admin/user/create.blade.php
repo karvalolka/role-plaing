@@ -55,7 +55,7 @@
                             @endforeach
                         </select>
                         @error('role')
-                        <div class="text-danger">Пожалуйста, выберите тип способности</div>
+                        <div class="text-danger">Пожалуйста, выберите роль</div>
                         @enderror
                     </div>
 

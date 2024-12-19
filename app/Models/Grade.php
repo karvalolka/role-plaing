@@ -19,4 +19,9 @@ class Grade extends Model
     {
         return $this->belongsToMany(Skill::class, 'skills_grades');
     }
+
+    public function chars()
+    {
+        return $this->hasMany(Char::class);
+    }
 }
