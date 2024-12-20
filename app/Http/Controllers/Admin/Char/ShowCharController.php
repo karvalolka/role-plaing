@@ -24,6 +24,8 @@ class ShowCharController extends Controller
         })
             ->get();
 
-        return view('admin.char.show', compact('char', 'abilities', 'skills'));
+        $free_points = $char->freePoints;
+
+        return view('admin.char.show', compact('char', 'abilities', 'skills', 'free_points'));
     }
 }

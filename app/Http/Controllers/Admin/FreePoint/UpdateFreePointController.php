@@ -16,7 +16,8 @@ class UpdateFreePointController extends Controller
         ]);
         $freePoint->update($data);
         $freePoints = FreePoint::all();
+        $groupedFreePoints = $freePoints->groupBy('points');
 
-        return view('admin.freePoint.index', compact('freePoint', 'freePoints'));
+        return view('admin.freePoint.index', compact('freePoint', 'freePoints', 'groupedFreePoints'));
     }
 }

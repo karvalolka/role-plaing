@@ -79,10 +79,33 @@
                         @enderror
                     </div>
 
+                    <div class="form-group" id="user-container">
+                        <label for="free_point">Выберите свободку:</label>
+                        <select id="free_point" class="select2 form-control" name="free_point_id[]" multiple="multiple">
+                            @foreach($free_points as $free_point)
+                                <option value="{{ $free_point->id }}">{{ $free_point->name }}</option>
+                            @endforeach
+                        </select>
+                        @error('free_point_id')
+                        <div class="text-danger">Пожалуйста, выберите расу</div>
+                        @enderror
+                    </div>
+
+
                     <input type="submit" class="btn btn-primary" value="Добавить">
                 </form>
             </div>
 
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#freePoint').select2({
+                placeholder: 'Выберите свободку',
+                allowClear: true,  // Разрешает очистку выбора
+                width: '100%'      // Устанавливает ширину для удобства
+            });
+        });
+
+    </script>
 @endsection

@@ -53,7 +53,11 @@
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Инвентарь</td>
-                                <td style="padding-top: 3px; padding-bottom: 3px;">{{ $char->inventory->structure }}</td>
+                                <td style="padding-top: 3px; padding-bottom: 3px;">{{ $char->inventory->structure }}
+                                    @foreach($free_points as $free_point)
+                                        <p style="margin: 0;">{{ $free_point->name }} (Количество: {{ $free_point->pivot->quantity }})</p>
+                                    @endforeach
+                                </td>
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Навыки</td>

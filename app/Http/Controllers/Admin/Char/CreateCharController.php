@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Char;
 
 use App\Http\Controllers\Controller;
+use App\Models\FreePoint;
 use App\Models\Grade;
 use App\Models\Inventory;
 use App\Models\Race;
@@ -16,6 +17,7 @@ class CreateCharController extends Controller
         $races = Race::all();
         $grades = Grade::all();
         $inventories = Inventory::all();
-        return view('admin.char.create', compact('users', 'races', 'grades', 'inventories'));
+        $free_points = FreePoint::all();
+        return view('admin.char.create', compact('users', 'races', 'grades', 'inventories', 'free_points'));
     }
 }

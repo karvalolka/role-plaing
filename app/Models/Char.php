@@ -33,4 +33,10 @@ class Char extends Model
     {
         return $this->belongsTo(Skill::class);
     }
+
+    public function freePoints()
+    {
+        return $this->belongsToMany(FreePoint::class, 'char_free_point', 'char_id', 'free_point_id')
+            ->withPivot('quantity');
+    }
 }

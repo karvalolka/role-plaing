@@ -77,6 +77,18 @@
                     @enderror
                 </div>
 
+                <div class="form-group col-3" id="user-container">
+                    <label for="freePoint">Выберите свободку:</label>
+                    <select id="freePoint" class="select2 form-control" name="freePoint_id">
+                        @foreach($freePoints as $freePoint)
+                            <option value="{{ $freePoint->id }}">{{ $freePoint->points }}</option>
+                        @endforeach
+                    </select>
+                    @error('freePoint_id')
+                    <div class="text-danger">Пожалуйста, выберите класс</div>
+                    @enderror
+                </div>
+
                 <input type="submit" class="btn btn-primary" value="Обновить">
             </form>
         </div>

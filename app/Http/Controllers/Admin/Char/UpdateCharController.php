@@ -15,6 +15,7 @@ class UpdateCharController extends Controller
             'user_id' => 'required|integer|exists:users,id',
             'grade_id' => 'required|integer|exists:grades,id',
             'inventory_id' => 'required|integer|exists:inventories,id',
+            'freePoint_id' => 'required|integer|exists:free_points,id',
         ]);
         $char->update($data);
         $chares = Char::all();
