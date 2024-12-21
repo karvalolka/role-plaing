@@ -13,4 +13,17 @@ class Inventory extends Model
     {
         return $this->hasMany(Char::class);
     }
+
+    public function addGold($amount)
+    {
+        $this->gold += $amount;
+        $this->save();
+    }
+
+    public function removeGold($amount)
+    {
+        $this->gold -= $amount;
+        $this->save();
+    }
+
 }

@@ -77,17 +77,38 @@
                     @enderror
                 </div>
 
-                <div class="form-group col-3" id="user-container">
-                    <label for="freePoint">Выберите свободку:</label>
-                    <select id="freePoint" class="select2 form-control" name="freePoint_id">
-                        @foreach($freePoints as $freePoint)
-                            <option value="{{ $freePoint->id }}">{{ $freePoint->points }}</option>
+                <div class="form-group col-3">
+                    <label for="free_point">Выберите свободку:</label>
+                    <div id="free_point" class="free-point-container">
+                        @foreach($free_points as $free_point)
+                            <div class="free-point-item">
+                                <label for="free_point_{{ $free_point->id }}" style="font-weight: normal;">
+                                    @if($free_point->name)
+                                        {{ $free_point->name }}. Цена: {{ $free_point->points }}
+                                    @else
+                                        Золото: {{ $free_point->gold }}. Цена: {{ $free_point->points }}
+                                    @endif
+                                </label>
+                                <div class="input-group">
+                                    <input class="number-text form-control" type="number"
+                                           name="free_point_count[{{ $free_point->id }}]"
+                                           value="{{ isset($char) && $char->freePoints->contains('id', $free_point->id) ?
+                            $char->freePoints->firstWhere('id', $free_point->id)->pivot->quantity : 0 }}"
+                                           min="0">
+                                    <input type="hidden" name="free_point_id[]" value="{{ $free_point->id }}">
+                                </div>
+                            </div>
                         @endforeach
-                    </select>
-                    @error('freePoint_id')
-                    <div class="text-danger">Пожалуйста, выберите класс</div>
+                    </div>
+                    @error('free_point_id')
+                    <div class="text-danger">Пожалуйста, выберите свободку</div>
                     @enderror
                 </div>
+
+
+
+
+
 
                 <input type="submit" class="btn btn-primary" value="Обновить">
             </form>

@@ -18,8 +18,8 @@ class EditCharController extends Controller
         $races = Race::all();
         $grades = Grade::all();
         $inventories = Inventory::all();
-        $freePoints = FreePoint::all();
-        return view('admin.char.edit', compact('char', 'users', 'races', 'grades', 'inventories', 'freePoints'));
+        $free_points = FreePoint::all();
+        return view('admin.char.edit', compact('char', 'users', 'races', 'grades', 'inventories', 'free_points'));
     }
 
 }

@@ -32,6 +32,16 @@
                         <div class="text-danger">Пожалуйста, выберите значение куба</div>
                         @enderror
                     </div>
+
+                    <div class="form-group">
+                        <label for="gold">Введите количество золота</label>
+                        <input type="number" class="form-control" name="gold" placeholder="Введите число" required step="any" min="0">
+                        @error('gold')
+                        <div class="text-danger">Заполните поле корректно</div>
+                        @enderror
+                    </div>
+
+
                     <div class="form-group">
                         <textarea id="story" class="form-control" name="structure" rows="5" style="resize: both;" placeholder="Введите текст"></textarea>
                         @error('structure')

@@ -33,7 +33,13 @@
                                                 <div class="col-md-6 mb-3">
                                                     <div class="d-flex justify-content-between align-items-center border p-3">
                                                         <div>
-                                                            <h5 class="mb-0">{{ $freePoint->name }}</h5> <!-- Убрали жирность -->
+                                                            <h5 class="mb-0">
+                                                                @if($freePoint->name)
+                                                                    {{ $freePoint->name }}
+                                                                @elseif($freePoint->gold)
+                                                                    {{ $freePoint->gold }} золота
+                                                                @endif
+                                                            </h5>
                                                         </div>
                                                         <div class="d-flex align-items-center">
                                                             <a href="{{ route('admin.freePoint.edit', $freePoint->id) }}" class="btn btn-link text-success me-2">

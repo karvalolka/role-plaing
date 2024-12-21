@@ -28,17 +28,49 @@
                         <div class="text-danger small">Пожалуйста, введите число</div>
                         @enderror
                     </div>
+
                     <div class="form-group mb-3">
-                        <label for="name" class="form-label">Предмет:</label>
-                        <textarea class="form-control" id="name" name="name" placeholder="Измените историю"
-                                  style="min-height: 100px; resize: vertical;">{{ old('name', $freePoint->name) }}</textarea>
+                        <label for="name_or_gold">Выберите тип:</label>
+                        <select class="form-control" id="name_or_gold" name="type" required>
+                            <option value="" disabled>Выберите тип</option>
+                            <option value="name" {{ old('type', $freePoint->name ? 'name' : 'gold') == 'name' ? 'selected' : '' }}>Имя</option>
+                            <option value="gold" {{ old('type', $freePoint->gold ? 'gold' : 'name') == 'gold' ? 'selected' : '' }}>Золото</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="name_field" style="display: {{ old('type', $freePoint->name ? 'name' : 'gold') == 'name' ? 'block' : 'none' }}">
+                        <textarea id="story" class="form-control" name="name" rows="5" style="resize: both;" placeholder="Введите текст">{{ old('name', $freePoint->name) }}</textarea>
                         @error('name')
                         <div class="text-danger small">Заполните поле</div>
                         @enderror
                     </div>
+
+                    <div class="form-group" id="gold_field" style="display: {{ old('type', $freePoint->gold ? 'gold' : 'name') == 'gold' ? 'block' : 'none' }}">
+                        <input type="number" id="gold" name="gold" class="form-control" placeholder="Введите количество золота" step="any" value="{{ old('gold', $freePoint->gold) }}">
+                        @error('gold')
+                        <div class="text-danger small">Пожалуйста, введите количество золота</div>
+                        @enderror
+                    </div>
+
                     <input type="submit" class="btn btn-primary" value="Обновить">
                 </form>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('name_or_gold').addEventListener('change', function () {
+            var nameField = document.getElementById('name_field');
+            var goldField = document.getElementById('gold_field');
+
+            nameField.style.display = 'none';
+            goldField.style.display = 'none';
+
+            if (this.value === 'name') {
+                nameField.style.display = 'block';
+            } else if (this.value === 'gold') {
+                goldField.style.display = 'block';
+            }
+        });
+    </script>
 @endsection

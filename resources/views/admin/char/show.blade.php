@@ -45,7 +45,8 @@
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Раса</td>
-                                <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">{{ $char->race->name }}</td>
+                                <td class="col-2"
+                                    style="padding-top: 3px; padding-bottom: 3px;">{{ $char->race->name }}</td>
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Класс</td>
@@ -53,12 +54,26 @@
                             </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Инвентарь</td>
-                                <td style="padding-top: 3px; padding-bottom: 3px;">{{ $char->inventory->structure }}
-                                    @foreach($free_points as $free_point)
-                                        <p style="margin: 0;">{{ $free_point->name }} (Количество: {{ $free_point->pivot->quantity }})</p>
+                                <td style="padding-top: 3px; padding-bottom: 3px;">
+                                    <label for="gold" style="font-weight: normal;">Золото:</label>
+
+                                    <input type="number" name="gold" id="gold" value="{{ $char->gold }}"
+                                           class="form-control" readonly
+                                           style="text-align: center; color: gold; font-weight: bold;">
+                                    {{ $char->inventory->structure }}
+
+                                    @foreach($char->freePoints as $free_point)
+                                        @if($free_point->name)
+                                        <p style="margin: 0;">
+                                            {{ $free_point->name }} (Количество: {{ $free_point->pivot->quantity }})
+                                        </p>
+                                        @endif
                                     @endforeach
                                 </td>
                             </tr>
+
+
+
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Навыки</td>
                                 <td style="padding-top: 3px; padding-bottom: 3px;">

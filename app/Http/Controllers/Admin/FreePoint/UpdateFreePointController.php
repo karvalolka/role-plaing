@@ -12,9 +12,35 @@ class UpdateFreePointController extends Controller
     {
         $data = $request->validate([
             'points' => 'required|integer',
-            'name' => 'required|string',
+            'type' => 'required|in:name,gold',
+            'name' => ['required_if:type,name', 'nullable', 'string'],
+            'gold' => ['required_if:type,gold', 'nullable', 'numeric', 'min:0'],
         ]);
-        $freePoint->update($data);
+
+        if ($data['type'] == 'name' && $data['gold'] !== null) {
+            return back()->withErrors(['gold' => 'Поле золота должно быть пустым, если выбран тип "Имя".']);
+        }
+
+        if ($data['type'] == 'gold' && $data['name'] !== null) {
+            return back()->withErrors(['name' => 'Поле имени должно быть пустым, если выбран тип "Золото".']);
+        }
+
+        if ($data['type'] == 'name') {
+            $freePointData = [
+                'name' => $data['name'],
+                'points' => $data['points'],
+                'gold' => null,
+            ];
+        } elseif ($data['type'] == 'gold') {
+            $freePointData = [
+                'name' => null,
+                'points' => $data['points'],
+                'gold' => $data['gold'],
+            ];
+        }
+
+        $freePoint->update($freePointData);
+
         $freePoints = FreePoint::all();
         $groupedFreePoints = $freePoints->groupBy('points');
 

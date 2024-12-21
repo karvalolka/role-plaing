@@ -13,6 +13,7 @@ class StoreInventoryController extends Controller
         $data = $request->validate([
             'cube' => 'required|integer|min:1|max:6',
             'structure' => 'required|string',
+            'gold' => 'required|numeric|min:0',
         ]);
         Inventory::firstOrCreate($data);
         return redirect()->route('admin.inventory.index');

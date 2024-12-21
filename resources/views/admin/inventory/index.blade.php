@@ -26,6 +26,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center col-1">Значение кости</th>
+                                <th class="text-center col-1">Золото</th>
                                 <th>Предметы</th>
                                 <th class="text-center col-1">Действия</th>
                             </tr>
@@ -34,6 +35,9 @@
                             @foreach($inventories as $inventory)
                                 <tr>
                                     <td class="text-center" style="padding-top: 5px; padding-bottom: 5px;">{{ $inventory->cube }}</td>
+                                    <td style="text-align: center; color: gold; font-weight: bold;">
+                                        {{$inventory->gold}}
+                                    </td>
                                     <td style="padding-top: 5px; padding-bottom: 5px;">
                                         @foreach(explode("\n", $inventory->structure) as $line)
                                             <p>{{ $line }}</p>

@@ -13,6 +13,7 @@ class UpdateInventoryController extends Controller
         $data = $request->validate([
             'cube' => 'required|integer|min:1|max:6',
             'structure' => 'required|string',
+            'gold' => 'required|numeric|min:0',
         ]);
         $inventory->update($data);
         $inventories = Inventory::all();
