@@ -9,27 +9,32 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Admin\Char\{CharController,
     CreateCharController,
     DeleteCharController,
     EditCharController,
     ShowCharController,
     StoreCharController,
-    UpdateCharController};
+    UpdateCharController
+};
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\Admin\User\{CreateUserController,
     DeleteUserController,
     EditUserController,
     StoreUserController,
     UpdateUserController,
-    UserController};
+    UserController
+};
 use App\Http\Controllers\Admin\Skill\{CreateSkillController,
     DeleteSkillController,
     EditSkillController,
     ShowSkillController,
     SkillController,
     StoreSkillController,
-    UpdateSkillController};
+    UpdateSkillController
+};
 use App\Http\Controllers\Admin\Patch\{CreatePatchController,
     DeletePatchController,
     EditPatchController,
@@ -95,9 +100,9 @@ use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
 };
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [IndexController::class, '__invoke'])->name('main.index');
+
 
 Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin.main.index');

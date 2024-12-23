@@ -1,8 +1,9 @@
 <div class="container-fluid">
     <div class="row">
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <a class="brand-link">
-                <span class="brand-text font-weight-light">Сайт</span>
+            <a href="{{ route('main.index') }}" class="brand-link d-flex justify-content-center align-items-center" style="text-decoration: none; color: #ffffff; width: 100%; padding: 0;">
+                <i class="nav-icon fab fa-d-and-d-beyond" style="margin-right: 8px; font-size: 48px;"></i>
+
             </a>
 
             <div class="sidebar">
