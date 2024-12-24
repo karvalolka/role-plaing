@@ -2,7 +2,7 @@
 
 @section('content')
 
-<section id="chars" class="welcome-hero">
+<section id="home" class="welcome-hero">
 
     <nav class="navbar navbar-default bootsnav navbar-sticky navbar-scrollspy" data-minus-value-desktop="70" data-minus-value-mobile="55" data-speed="1000" style="padding: 0; border: none; background: rgba(255, 255, 255, 0.6); margin-top: 40px; backdrop-filter: blur(10px);">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; padding: 0; margin-top: 0;">
@@ -17,12 +17,12 @@
             <!-- Навигационное меню (по центру) -->
             <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu" style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                 <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp" style="display: flex; margin-bottom: 0; padding: 0;">
-                    <li class="scroll active" style="margin-right: 20px;"><a href="#chars">Персонажи</a></li>
-                    <li class="scroll" style="margin-right: 20px;"><a href="#lore">Лор</a></li>
-                    <li class="scroll" style="margin-right: 20px;"><a href="#races">Расы</a></li>
-                    <li class="scroll" style="margin-right: 20px;"><a href="#grades">Классы</a></li>
-                    <li class="scroll" style="margin-right: 20px;"><a href="#free-points">Свободные очки</a></li>
-                    <li class="scroll" style="margin-right: 20px;"><a href="#mechanics">Механики</a></li>
+                    <li class="scroll active" style="margin-right: 20px;"><a href="#home">Персонажи</a></li>
+                    <li class="scroll" style="margin-right: 20px;"><a href="#works">Лор</a></li>
+                    <li class="scroll" style="margin-right: 20px;"><a href="#explore">Расы</a></li>
+                    <li class="scroll" style="margin-right: 20px;"><a href="#reviews">Классы</a></li>
+                    <li class="scroll" style="margin-right: 20px;"><a href="#blog">Свободные очки</a></li>
+                    <li class="scroll" style="margin-right: 20px;"><a href="#contact">Механики</a></li>
                 </ul>
             </div>
         </div>
@@ -30,41 +30,72 @@
 
     <div class="container">
         <div class="welcome-hero-txt">
-            <h2>Когда вам покажется, что цель недостижима, не изменяйте цель — изменяйте свой план действий</h2>
+            <h2>best place to find and explore <br> that all you need </h2>
             <p>
-                © Конфуций
+                Find Best Place, Restaurant, Hotel, Real State and many more think in just One click
             </p>
         </div>
     </div>
 
 </section>
 
-{{--Персонажи--}}
 <section id="list-topics" class="list-topics">
-    <div class="container" style="display: flex; justify-content: center; align-items: center;">
-        <div class="list-topics-content d-flex">
-            <ul style="display: flex; list-style: none; padding: 0; margin: 0;">
-                @foreach($chars as $char)
-                    <li style="margin-right: 20px;">
-                        <div class="single-list-topics-content">
-                            <div class="single-list-topics-icon">
-                                <i class="flaticon-restaurant"></i>
-                            </div>
-                            <h2><a href="#">{{$char->name}}</a></h2>
-                            <p>{{ $racenames[$char->race_id]}}</p>
-                            <p>{{ $gradenames[$char->grade_id]}}</p>
+    <div class="container">
+        <div class="list-topics-content">
+            <ul>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-restaurant"></i>
                         </div>
-                    </li>
-                @endforeach
+                        <h2><a href="#">Лор</a></h2>
+                        <p>150 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-travel"></i>
+                        </div>
+                        <h2><a href="#">Расы</a></h2>
+                        <p>214 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-building"></i>
+                        </div>
+                        <h2><a href="#">Классы</a></h2>
+                        <p>185 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-pills"></i>
+                        </div>
+                        <h2><a href="#">Механики</a></h2>
+                        <p>200 listings</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="single-list-topics-content">
+                        <div class="single-list-topics-icon">
+                            <i class="flaticon-transport"></i>
+                        </div>
+                        <h2><a href="#">Свободные очки</a></h2>
+                        <p>120 listings</p>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
 
-
 </section>
 
 {{--Лор--}}
-<section id="lore" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
+<section id="works" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
     <div class="container">
         <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
             <h2 style="font-size: 36px; font-weight: bold; color: #333;">Лор</h2>
@@ -120,7 +151,7 @@
 </section>
 
 {{--Расы--}}
-<section id="races" class="explore">
+<section id="explore" class="explore">
     <div class="container">
         <div class="section-header">
             <h2 style="font-size: 36px; font-weight: bold; color: #333;">Расы</h2>
@@ -530,7 +561,7 @@
 </section>
 
 {{--Классы--}}
-<section id="grades" class="reviews">
+<section id="reviews" class="reviews">
     <div class="section-header ">
         <h2 style="font-size: 36px; font-weight: bold; color: #333;">Классы</h2>
     </div>
@@ -783,7 +814,7 @@
 </section>
 
 {{--Свободные очки--}}
-<section id="free-points" class="blog" >
+<section id="blog" class="blog" >
     <div class="container">
         <div class="section-header">
             <h2 style="font-size: 36px; font-weight: bold; color: #333;">Свободные очки</h2>
@@ -839,7 +870,7 @@
 </section>
 
 {{--Механики--}}
-<section id="mechanics" class="subscription">
+<section id="contact" class="subscription">
     <div class="container">
         <div class="subscribe-title text-center">
             <h2 style="font-size: 36px; font-weight: bold; color: #333;">
