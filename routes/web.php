@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Personal\PersonalController;
 use App\Http\Controllers\Admin\Char\{CharController,
     CreateCharController,
     DeleteCharController,
@@ -106,6 +107,7 @@ Route::get('/', [IndexController::class, '__invoke'])->name('main.index');
 
 Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin.main.index');
+
     Route::prefix('lore')->group(function () {
         Route::get('/', [LoreController::class, '__invoke'])->name('admin.lore.index');
         Route::get('/create', [CreateLoreController::class, '__invoke'])->name('admin.lore.create');
@@ -225,6 +227,10 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
         Route::patch('/{char}', [UpdateCharController::class, '__invoke'])->name('admin.char.update');
         Route::delete('/{char}', [DeleteCharController::class, '__invoke'])->name('admin.char.delete');
     });
+});
+
+Route::prefix('personal')->middleware(['auth'])->group(function () {
+    Route::get('/{id}', [PersonalController::class, '__invoke'])->name('personal.show');
 });
 
 Auth::routes();
