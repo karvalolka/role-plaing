@@ -17,7 +17,6 @@
                     <a class="navbar-brand" href="index.html" style="margin-right: 20px;">list<span>race</span></a>
                 </div>
 
-                <!-- Навигационное меню (по центру) -->
                 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu"
                      style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
                     <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp"
@@ -45,25 +44,24 @@
     </section>
 
     {{--Персонажи--}}
-    <section id="list-topics" class="list-topics">
-        <div class="container" style="display: flex; justify-content: center; align-items: center;">
-            <div class="list-topics-content d-flex">
-                <ul style="display: flex; list-style: none; padding: 0; margin: 0;">
-                    @foreach($chars as $char)
-                        <li style="margin-right: 20px;"><a href="{{ route('personal.show', ['id' => $char->id]) }}">
-                                <div class="single-list-topics-content">
-                                    <div class="single-list-topics-icon">
-                                        <i class="flaticon-restaurant"></i>
-                                    </div>
-                                    <h2>{{ $char->name }}</h2>
-                                    <p>{{ $racenames[$char->race_id] }}</p>
-                                    <p>{{ $gradenames[$char->grade_id] }}</p>
+    <section id="list-topics" class="list-topics" style="margin-top: 80px;">
+        <div class="container" style="text-align: center;">
+            <ul style="display: flex; justify-content: center; list-style: none; padding: 0; margin: 0;">
+                @foreach($chars as $char)
+                    <li style="margin-right: 20px;">
+                        <a href="{{ route('personal.char.show', ['id' => $char->id]) }}">
+                            <div class="single-list-topics-content">
+                                <div class="single-list-topics-icon">
+                                    <i class="flaticon-restaurant"></i>
                                 </div>
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-            </div>
+                                <h2>{{ $char->name }}</h2>
+                                <p>{{ $racenames[$char->race_id] }}</p>
+                                <p>{{ $gradenames[$char->grade_id] }}</p>
+                            </div>
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
         </div>
     </section>
 
@@ -85,15 +83,16 @@
                         <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                             {{$lore->text}}
                         </p>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            читать полностью
-                        </button>
+                        <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
+                            <a href='{{route('personal.lore.show', ['id' => $lore->id])}}' class="welcome-hero-btn how-work-btn">
+                                читать полностью
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
     </section>
-
 
     {{--Расы--}}
     <section id="races" class="explore">
@@ -120,23 +119,27 @@
     </section>
 
     {{--Классы--}}
-    <section id="grades" class="reviews">
-        <div class="section-header ">
-            <h2 style="font-size: 36px; font-weight: bold; color: #333;">Классы</h2>
-        </div>
-        <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-            @foreach($grades as $grade)
-                <div class="single-how-works"
-                     style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
-                    <div class="single-how-works-icon">
-                        <i class="flaticon-lightbulb-idea"></i>
+    <section id="grades" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
+        <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
+                <h2 style="font-size: 36px; font-weight: bold; color: #333;">Классы</h2>
+            </div>
+            <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                @foreach($grades as $grade)
+                    <div class="single-how-works"
+                         style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
+                        <div class="single-how-works-icon">
+                            <i class="flaticon-lightbulb-idea"></i>
+                        </div>
+                        <h2>{{$grade->name}}</h2>
+                        <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
+                            <a href='{{route('personal.grade.show', ['id' => $grade->id])}}' class="welcome-hero-btn how-work-btn">
+                                читать полностью
+                            </a>
+                        </div>
                     </div>
-                    <h2 style="margin-top: 20px; margin-bottom: 20px;">{{$grade->name}}</h2>
-                    <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                        читать полностью
-                    </button>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -154,9 +157,11 @@
                             <img src="{{asset('assets/images/blog/b1.jpg')}}" alt="blog image"
                                  style="width: 100%; height: auto;">
                         </div>
+                        <a href="{{route('personal.freePoint.show', ['id' => $freePoint->id])}}">
                         <div class="single-blog-item-txt">
                             <h2 style="margin-top: 20px; margin-bottom: 20px;">{{$freePoint->points}}</h2>
                         </div>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -164,12 +169,10 @@
     </section>
 
     {{--Механики--}}
-    <section id="mechanics" class="subscription">
-        <div class="container">
-            <div class="subscribe-title text-center">
-                <h2 style="font-size: 36px; font-weight: bold; color: #333;">
-                    Механики
-                </h2>
+    <section id="mechanics" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
+        <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
+                <h2 style="font-size: 36px; font-weight: bold; color: #333;">Механики</h2>
             </div>
             <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 @foreach($mechanics as $mechanic)
@@ -178,15 +181,19 @@
                         <div class="single-how-works-icon">
                             <i class="flaticon-lightbulb-idea"></i>
                         </div>
-                        <h2 style="margin-top: 20px; margin-bottom: 20px;">{{$mechanic->types}}</h2>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            читать полностью
-                        </button>
+                        <h2>{{$mechanic->types}}</h2>
+                        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                            {{$mechanic->conditions}}
+                        </p>
+                        <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
+                            <a href='{{route('personal.mechanic.show', ['id' => $mechanic->id])}}' class="welcome-hero-btn how-work-btn">
+                                читать полностью
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
-
     </section>
 
 @endsection

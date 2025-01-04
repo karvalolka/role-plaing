@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Карточка персонажа</title>
+    <title>Лор</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -26,7 +26,7 @@
             transition: transform 0.3s ease-in-out;
             margin: 15px;
             width: 100%;
-            max-width: 500px; /* Уменьшена максимальная ширина */
+            max-width: 500px;
             padding: 20px;
         }
 
@@ -75,7 +75,7 @@
 
         @media screen and (max-width: 768px) {
             .character-card {
-                max-width: 90%; /* Устанавливаем карточку шириной 90% на мобильных устройствах */
+                max-width: 90%;
                 padding: 16px;
             }
 
@@ -87,25 +87,12 @@
 </head>
 <body>
 
-<!-- Карточка одного персонажа -->
 <div class="character-card">
 
     <div class="character-info">
-        <h1>{{ $chars->name }}</h1>
+        <h1>{{ $lores->era }}</h1>
 
-        <!-- Статистика персонажа -->
-        <div class="stat"><strong>Раса:</strong> {{ $chars->race->name }}</div>
-        <div class="stat"><strong>Класс:</strong> {{ $chars->grade->name }}</div>
-        <div class="stat"><strong>Способности:</strong> {{ $chars->skill->name }}</div>
-        <div class="stat"><strong>Золото:</strong> {{ $chars->gold }}</div>
-
-        <!-- Инвентарь персонажа -->
-        <div class="stat"><strong>Инвентарь:</strong></div>
-        <ul class="inventory-list">
-            @foreach(explode("\n", $chars->inventory->structure) as $line)
-                <li>{{ $line }}</li>
-            @endforeach
-        </ul>
+        <div class="stat"> {{ $lores->text }}</div>
 
     </div>
 </div>

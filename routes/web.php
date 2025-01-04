@@ -9,9 +9,6 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     UpdateAbilityController
 };
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Main\IndexController;
-use App\Http\Controllers\Personal\PersonalController;
 use App\Http\Controllers\Admin\Char\{CharController,
     CreateCharController,
     DeleteCharController,
@@ -19,29 +16,6 @@ use App\Http\Controllers\Admin\Char\{CharController,
     ShowCharController,
     StoreCharController,
     UpdateCharController
-};
-use App\Http\Middleware\AdminMiddleware;
-use App\Http\Controllers\Admin\User\{CreateUserController,
-    DeleteUserController,
-    EditUserController,
-    StoreUserController,
-    UpdateUserController,
-    UserController
-};
-use App\Http\Controllers\Admin\Skill\{CreateSkillController,
-    DeleteSkillController,
-    EditSkillController,
-    ShowSkillController,
-    SkillController,
-    StoreSkillController,
-    UpdateSkillController
-};
-use App\Http\Controllers\Admin\Patch\{CreatePatchController,
-    DeletePatchController,
-    EditPatchController,
-    PatchController,
-    StorePatchController,
-    UpdatePatchController
 };
 use App\Http\Controllers\Admin\Cube\{CreateCubeController,
     CubeController,
@@ -85,12 +59,27 @@ use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     StoreMechanicController,
     UpdateMechanicController
 };
+use App\Http\Controllers\Admin\Patch\{CreatePatchController,
+    DeletePatchController,
+    EditPatchController,
+    PatchController,
+    StorePatchController,
+    UpdatePatchController
+};
 use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
     RaceController,
     StoreRaceController,
     UpdateRaceController
+};
+use App\Http\Controllers\Admin\Skill\{CreateSkillController,
+    DeleteSkillController,
+    EditSkillController,
+    ShowSkillController,
+    SkillController,
+    StoreSkillController,
+    UpdateSkillController
 };
 use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
     DeleteTypeAbilityController,
@@ -99,6 +88,21 @@ use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
     TypeAbilityController,
     UpdateTypeAbilityController
 };
+use App\Http\Controllers\Admin\User\{CreateUserController,
+    DeleteUserController,
+    EditUserController,
+    StoreUserController,
+    UpdateUserController,
+    UserController
+};
+use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Personal\{UserCharController,
+    UserFreePointsController,
+    UserGradeController,
+    UserLoreController,
+    UserMechanicController,
+    UserRaceController};
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
@@ -230,7 +234,24 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
 });
 
 Route::prefix('personal')->middleware(['auth'])->group(function () {
-    Route::get('/{id}', [PersonalController::class, '__invoke'])->name('personal.show');
+    Route::prefix('char')->group(function () {
+        Route::get('/{id}', [UserCharController::class, '__invoke'])->name('personal.char.show');
+    });
+    Route::prefix('lore')->group(function () {
+        Route::get('/{id}', [UserLoreController::class, '__invoke'])->name('personal.lore.show');
+    });
+    Route::prefix('race')->group(function () {
+        Route::get('/{id}', [UserRaceController::class, '__invoke'])->name('personal.race.show');
+    });
+    Route::prefix('grade')->group(function () {
+        Route::get('/{id}', [UserGradeController::class, '__invoke'])->name('personal.grade.show');
+    });
+    Route::prefix('free_point')->group(function () {
+        Route::get('/{id}', [UserFreePointsController::class, '__invoke'])->name('personal.freePoint.show');
+    });
+    Route::prefix('mechanics')->group(function () {
+        Route::get('/{id}', [UserMechanicController::class, '__invoke'])->name('personal.mechanic.show');
+    });
 });
 
 Auth::routes();
