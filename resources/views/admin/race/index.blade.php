@@ -36,19 +36,22 @@
                                 <tr>
                                     <td>{{ $race->name }}</td>
                                     <td class="text-center">
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            <a href="{{ route('admin.race.edit', $race->id) }}"
-                                               class="btn btn-link text-success p-1">
+                                        <div class="d-flex justify-content-center align-items-center gap-3">
+                                            <a href="{{ route('admin.race.show', $race->id) }}" class="text-primary" title="Просмотр">
+                                                <i class="far fa-eye"></i>
+                                            </a>
+                                            <a href="{{ route('admin.race.edit', $race->id) }}" class="btn btn-link text-success p-1" title="Редактировать">
                                                 <i class="fas fa-pencil-alt"></i>
                                             </a>
                                             <form action="{{ route('admin.race.delete', $race->id) }}" method="POST">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="submit" class="btn btn-link p-1 text-danger">
+                                                <button type="submit" class="btn btn-link p-1 text-danger" title="Удалить">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </form>
                                         </div>
+
                                     </td>
                                 </tr>
                             @endforeach

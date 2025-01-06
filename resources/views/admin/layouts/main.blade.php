@@ -56,7 +56,7 @@
     <footer class="main-footer">
         <strong>Вехи Потерянного Мира</strong>
         <div class="float-right d-none d-sm-inline-block">
-            <b>Version</b> 1.2.0
+            <b>Version</b> {{$patches->number}}
         </div>
     </footer>
 

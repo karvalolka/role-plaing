@@ -70,9 +70,9 @@ use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
     RaceController,
+    ShowRaceController,
     StoreRaceController,
-    UpdateRaceController
-};
+    UpdateRaceController};
 use App\Http\Controllers\Admin\Skill\{CreateSkillController,
     DeleteSkillController,
     EditSkillController,
@@ -162,6 +162,7 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
         Route::get('/', [RaceController::class, '__invoke'])->name('admin.race.index');
         Route::get('/create', [CreateRaceController::class, '__invoke'])->name('admin.race.create');
         Route::post('/', [StoreRaceController::class, '__invoke'])->name('admin.race.store');
+        Route::get('/{race}', [ShowRaceController::class, '__invoke'])->name('admin.race.show');
         Route::get('/{race}/edit', [EditRaceController::class, '__invoke'])->name('admin.race.edit');
         Route::patch('/{race}', [UpdateRaceController::class, '__invoke'])->name('admin.race.update');
         Route::delete('/{race}', [DeleteRaceController::class, '__invoke'])->name('admin.race.delete');

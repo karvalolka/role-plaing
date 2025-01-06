@@ -12,6 +12,16 @@ class UpdateRaceController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'hp' => 'nullable|string',
+            'mp/sm' => 'nullable|string',
+            'strength' => 'nullable|string',
+            'agility' => 'nullable|string',
+            'stamina' => 'nullable|string',
+            'reception' => 'nullable|string',
+            'intelligence' => 'nullable|string',
+            'charisma' => 'nullable|string',
+            'luck' => 'nullable|string',
+            'fortitude' => 'nullable|string',
         ]);
 
         $race->update($data);

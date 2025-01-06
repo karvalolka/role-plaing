@@ -72,6 +72,22 @@
             color: #777;
             padding: 5px 0;
         }
+        .back-button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #27ae60;
+        }
 
         @media screen and (max-width: 768px) {
             .character-card {
@@ -103,7 +119,7 @@
                 <li>{{ $line }}</li>
             @endforeach
         </ul>
-
+        <a href="javascript:history.back()" class="back-button">Назад</a>
     </div>
 </div>
 

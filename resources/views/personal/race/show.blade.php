@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Механики</title>
+    <title>Расы</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -73,6 +73,23 @@
             padding: 5px 0;
         }
 
+        .back-button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #27ae60;
+        }
+
         @media screen and (max-width: 768px) {
             .character-card {
                 max-width: 90%;
@@ -90,10 +107,49 @@
 <div class="character-card">
 
     <div class="character-info">
-        <h1>{{ $mechanic->types }}</h1>
+        <h1>{{ $races->name }}</h1>
 
-        <div class="stat">{{ $mechanic->conditions }}</div>
+        @if($races->hp !== null)
+            <div class="stat"><strong>Жизни:</strong> {{ $races->hp }}</div>
+        @endif
 
+        @if($races->{'mp/sm'} !== null)
+            <div class="stat"><strong>Мана/Стамина:</strong> {{ $races->{'mp/sm'} }}</div>
+        @endif
+
+        @if($races->strength !== null)
+            <div class="stat"><strong>Сила:</strong> {{ $races->strength }}</div>
+        @endif
+
+        @if($races->agility !== null)
+            <div class="stat"><strong>Ловкость:</strong> {{ $races->agility }}</div>
+        @endif
+
+        @if($races->stamina !== null)
+            <div class="stat"><strong>Выносливость:</strong> {{ $races->stamina }}</div>
+        @endif
+
+        @if($races->reception !== null)
+            <div class="stat"><strong>Восприятие:</strong> {{ $races->reception }}</div>
+        @endif
+
+        @if($races->intelligence !== null)
+            <div class="stat"><strong>Интеллект:</strong> {{ $races->intelligence }}</div>
+        @endif
+
+        @if($races->charisma !== null)
+            <div class="stat"><strong>Харизма:</strong> {{ $races->charisma }}</div>
+        @endif
+
+        @if($races->luck !== null)
+            <div class="stat"><strong>Удача:</strong> {{ $races->luck }}</div>
+        @endif
+
+        @if($races->fortitude !== null)
+            <div class="stat"><strong>Сила воли:</strong> {{ $races->fortitude }}</div>
+        @endif
+
+        <a href="javascript:history.back()" class="back-button">Назад</a>
     </div>
 </div>
 

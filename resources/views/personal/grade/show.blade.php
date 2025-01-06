@@ -61,16 +61,45 @@
             font-weight: 600;
         }
 
-        .inventory-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .skill {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
         }
 
-        .inventory-list li {
-            font-size: 14px;
-            color: #777;
-            padding: 5px 0;
+        .skill:hover {
+            transform: scale(1.05);
+            background-color: #f1f1f1;
+        }
+
+        .skill p {
+            margin: 5px 0;
+        }
+
+        .skill p strong {
+            color: #3498db;
+        }
+
+        .back-button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .back-button:hover {
+            background-color: #27ae60;
         }
 
         @media screen and (max-width: 768px) {
@@ -82,6 +111,10 @@
             .character-info {
                 padding: 16px;
             }
+
+            .back-button {
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -92,13 +125,18 @@
     <div class="character-info">
         <h1>{{ $grades->name }}</h1>
 
-        <div class="stat"><strong>Способности:</strong>
+        <div class="stat">
+            <strong>Способности:</strong>
             @foreach($grades->skills as $skill)
-                <p>{{ $skill->level }}</p>
-                <p>{{ $skill->name }}</p>
-                <p>{{ $skill->description }}</p>
+                <div class="skill">
+                    <p><strong>Уровень:</strong> {{ $skill->level }}</p>
+                    <p><strong>Название:</strong> {{ $skill->name }}</p>
+                    <p><strong>Описание:</strong> {{ $skill->description }}</p>
+                </div>
             @endforeach
         </div>
+
+        <a href="javascript:history.back()" class="back-button">Назад</a>
     </div>
 
 </div>

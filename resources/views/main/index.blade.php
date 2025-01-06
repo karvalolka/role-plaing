@@ -65,7 +65,6 @@
         </div>
     </section>
 
-
     {{--Лор--}}
     <section id="lore" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
         <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
@@ -95,27 +94,28 @@
     </section>
 
     {{--Расы--}}
-    <section id="races" class="explore">
-        <div class="container">
-            <div class="section-header">
+    <section id="races" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
+        <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
                 <h2 style="font-size: 36px; font-weight: bold; color: #333;">Расы</h2>
             </div>
             <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
-                @foreach($races as $r)
+                @foreach($races as $race)
                     <div class="single-how-works"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
                         <div class="single-how-works-icon">
                             <i class="flaticon-lightbulb-idea"></i>
                         </div>
-                        <h2 style="margin-top: 20px; margin-bottom: 20px;">{{$r->name}}</h2>
-                        <button class="welcome-hero-btn how-work-btn" onclick="window.location.href='#'">
-                            Подробности
-                        </button>
+                        <h2>{{$race->name}}</h2>
+                        <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
+                            <a href='{{route('personal.race.show', ['id' => $race->id])}}' class="welcome-hero-btn how-work-btn">
+                                читать полностью
+                            </a>
+                        </div>
                     </div>
                 @endforeach
             </div>
         </div>
-
     </section>
 
     {{--Классы--}}
