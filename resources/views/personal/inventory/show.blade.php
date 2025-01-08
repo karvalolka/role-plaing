@@ -112,8 +112,10 @@
 
         <div class="stat">
             <div>
-                <p><strong>Золото:</strong> {{ $inventory->gold ?? 'Не указано' }}</p> <!-- Золото -->
-                <p><strong>Предметы:</strong> {{ $inventory->structure ?? 'Не указано' }}</p> <!-- Структура -->
+                @if($inventory->gold > 0)
+                    <p><strong>Золото:</strong> {{ $inventory->gold }}</p>
+                @endif
+                <p><strong>Предметы:</strong> {{ $inventory->structure }}</p>
             </div>
         </div>
 
