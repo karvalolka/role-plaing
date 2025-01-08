@@ -26,6 +26,10 @@
                         <div class="text-danger">Заполните поле</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="icon">Иконка</label>
+                        <input id="icon" class="form-control" name="icon_svg" placeholder="Введите svg">
+                    </div>
 
                     <input type="submit" class="btn btn-primary" value="Добавить">
                 </form>

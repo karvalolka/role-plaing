@@ -28,6 +28,7 @@
                             <thead>
                             <tr>
                                 <th>Название</th>
+                                <th>Иконки</th>
                                 <th style="width: 20%; text-align: center;">Действия</th>
                             </tr>
                             </thead>
@@ -35,6 +36,11 @@
                             @foreach($races as $race)
                                 <tr>
                                     <td>{{ $race->name }}</td>
+                                    <td class="col-1" style="text-align: center; width: 50px; height: 50px;">
+                                        <div style="max-width: 50px; max-height: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                            {!! preg_replace('/<svg/', '<svg width="50" height="50"', $race->icon_svg) !!}
+                                        </div>
+                                    </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center gap-3">
                                             <a href="{{ route('admin.race.show', $race->id) }}" class="text-primary" title="Просмотр">

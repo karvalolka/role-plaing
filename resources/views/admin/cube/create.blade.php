@@ -22,16 +22,18 @@
                     @csrf
                     <div class="form-group">
                         <label for="story">Введите число</label>
-                        <input type="number" class="form-control" name="name" value="{{ old('name') }}" placeholder="Введите число" required>
+                        <input type="number" class="form-control" name="name" placeholder="Введите число" required>
                         @error('name')
                         <div class="text-danger">Заполните поле корректно</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="story">Иконка</label>
+                        <input class="form-control" name="icon_svg" placeholder="Введите svg">
+                    </div>
                     <input type="submit" class="btn btn-primary" value="Добавить">
                 </form>
-
             </div>
-
         </div>
     </div>
 @endsection

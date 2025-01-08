@@ -27,15 +27,21 @@
                             <tr>
                                 <th class="text-center">Тип</th>
                                 <th>Условия</th>
+                                <th class="text-center">Иконка</th>
                                 <th class="text-center">Действия</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach($mechanics as $mechanic)
                                 <tr>
-                                    <td class="text-center">{{ $mechanic->types }}</td>
+                                    <td class="text-center col-2">{{ $mechanic->types }}</td>
                                     <td>{{ $mechanic->conditions }}</td>
-                                    <td class="text-center">
+                                    <td class="col-1" style="text-align: center; width: 50px; height: 50px;">
+                                        <div style="max-width: 50px; max-height: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                            {!! preg_replace('/<svg/', '<svg width="50" height="50"', $mechanic->icon_svg) !!}
+                                        </div>
+                                    </td>
+                                    <td class="text-center col-1">
                                         <div class="d-flex justify-content-center align-items-center gap-2">
                                             <a href="{{ route('admin.mechanic.edit', $mechanic->id) }}" class="btn btn-link text-success p-1">
                                                 <i class="fas fa-pencil-alt"></i>

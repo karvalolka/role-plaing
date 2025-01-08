@@ -7,7 +7,8 @@
                     <nav aria-label="Breadcrumb">
                         <ol style="display: inline; padding: 0; margin: 0; list-style: none;">
 
-                            <li style="display: inline; margin-left: 10px;"><a href="{{route('admin.lore.index')}}">Лор</a>
+                            <li style="display: inline; margin-left: 10px;"><a
+                                    href="{{route('admin.lore.index')}}">Лор</a>
                             </li>
 
                         </ol>
@@ -29,10 +30,15 @@
                         @error('era')
                         <div class="text-danger">Заполните поле корректно</div>
                         @enderror
+
+                        <label for="story">Иконка</label>
+                        <input class="form-control" name="icon_svg" placeholder="Введите svg">
+
                     </div>
                     <div class="form-group">
                         <label for="story">Поведайте историю</label>
-                        <textarea id="story" class="form-control" name="text" rows="5" style="resize: both;" placeholder="Поведайте историю"></textarea>
+                        <textarea id="story" class="form-control" name="text" rows="5" style="resize: both;"
+                                  placeholder="Поведайте историю"></textarea>
                         @error('text')
                         <div class="text-danger">Заполните поле</div>
                         @enderror

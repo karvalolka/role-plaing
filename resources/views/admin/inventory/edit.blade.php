@@ -18,31 +18,37 @@
             <div class="col-xl-12 col-md-6 mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Редактирование Инвентаря</h1>
             </div>
-            <form action="{{ route('admin.inventory.update', $inventory->id) }}" method="POST" class="col-xl-12 col-md-6 mb-4">
+            <form action="{{ route('admin.inventory.update', $inventory->id) }}" method="POST"
+                  class="col-xl-12 col-md-6 mb-4">
                 @csrf
                 @method('PATCH')
                 <div class="form-group col-3">
-                    <label for="cube">Выберите куб:</label>
-                    <select id="cube" class="form-control" name="cube">
-                        @for ($i = 1; $i <= 6; $i++)
-                            <option value="{{ $i }}" {{ $inventory->cube == $i ? 'selected' : '' }}>
-                                {{ $i }}
+                    <label for="cube" class="form-label">Выберите куб:</label>
+                    <select id="cube" class="form-control custom-select" name="cube">
+                        @foreach ($cubes as $cube)
+                            <option value="{{ $cube->id }}"
+                                {{ old('cube', $inventory->cube_id) == $cube->id ? 'selected' : '' }}>
+                                {{ $cube->name }}
                             </option>
-                        @endfor
+                        @endforeach
                     </select>
                     @error('cube')
-                    <div class="text-danger">Пожалуйста, выберите значение куба</div>
+                    <div class="text-danger mt-2" style="font-size: 0.875rem;">Пожалуйста, выберите значение куба</div>
                     @enderror
                 </div>
+
+
                 <div class="form-group col-3">
                     <label for="gold">Введите количества золота</label>
-                    <input type="number" class="form-control" name="gold" value="{{ old('gold', $inventory->gold) }}" placeholder="Введите число" required step="any" min="0">
+                    <input type="number" class="form-control" name="gold" value="{{ old('gold', $inventory->gold) }}"
+                           placeholder="Введите число" required step="any" min="0">
                     @error('gold')
                     <div class="text-danger">Заполните поле корректно</div>
                     @enderror
                 </div>
                 <div class="form-group col-3">
-                    <textarea class="form-control" name="structure" placeholder="Измените историю" style="min-height: 150px; resize: vertical;">{{$inventory->structure}}</textarea>
+                    <textarea class="form-control" name="structure" placeholder="Измените историю"
+                              style="min-height: 150px; resize: vertical;">{{$inventory->structure}}</textarea>
                     @error('structure')
                     <div class="text-danger">Заполните поле</div>
                     @enderror

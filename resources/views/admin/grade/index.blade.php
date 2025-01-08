@@ -28,6 +28,7 @@
                             <thead>
                             <tr>
                                 <th>Название</th>
+                                <th style="width: 20%; text-align: center;">Иконка</th>
                                 <th style="width: 20%; text-align: center;">Действия</th>
                             </tr>
                             </thead>
@@ -35,6 +36,11 @@
                             @foreach($grades as $grade)
                                 <tr>
                                     <td>{{ $grade->name }}</td>
+                                    <td class="col-1" style="text-align: center; width: 50px; height: 50px;">
+                                        <div style="max-width: 50px; max-height: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                            {!! preg_replace('/<svg/', '<svg width="50" height="50"', $grade->icon_svg) !!}
+                                        </div>
+                                    </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center align-items-center gap-2">
                                             <a href="{{ route('admin.grade.edit', $grade->id) }}"

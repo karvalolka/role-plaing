@@ -13,6 +13,7 @@ class UpdateLoreController extends Controller
         $data = $request->validate([
             'text' => 'required|string',
             'era' => 'required|string',
+            'icon_svg' => 'nullable|string',
         ]);
         $lore->update($data);
         $lores = Lore::all();

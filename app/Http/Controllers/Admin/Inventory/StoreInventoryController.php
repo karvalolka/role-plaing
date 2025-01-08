@@ -11,11 +11,17 @@ class StoreInventoryController extends Controller
     public function __invoke(Request $request)
     {
         $data = $request->validate([
-            'cube' => 'required|integer|min:1|max:6',
+            'cube' => 'required|exists:cubes,id',
             'structure' => 'required|string',
             'gold' => 'required|numeric|min:0',
         ]);
-        Inventory::firstOrCreate($data);
+
+        Inventory::create([
+            'cube_id' => $data['cube'],
+            'structure' => $data['structure'],
+            'gold' => $data['gold'],
+        ]);
+
         return redirect()->route('admin.inventory.index');
     }
 }

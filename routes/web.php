@@ -99,6 +99,7 @@ use App\Http\Controllers\Main\IndexController;
 use App\Http\Controllers\Personal\{UserCharController,
     UserFreePointsController,
     UserGradeController,
+    UserInventoryController,
     UserLoreController,
     UserMechanicController,
     UserRaceController};
@@ -250,8 +251,11 @@ Route::prefix('personal')->middleware(['auth'])->group(function () {
     Route::prefix('free_point')->group(function () {
         Route::get('/{id}', [UserFreePointsController::class, '__invoke'])->name('personal.freePoint.show');
     });
-    Route::prefix('mechanics')->group(function () {
+    Route::prefix('mechanic')->group(function () {
         Route::get('/{id}', [UserMechanicController::class, '__invoke'])->name('personal.mechanic.show');
+    });
+    Route::prefix('inventory')->group(function () {
+        Route::get('/{id}', [UserInventoryController::class, '__invoke'])->name('personal.inventory.show');
     });
 });
 

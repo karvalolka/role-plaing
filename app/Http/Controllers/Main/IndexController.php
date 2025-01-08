@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Char;
+use App\Models\Cube;
 use App\Models\FreePoint;
 use App\Models\Grade;
+use App\Models\Inventory;
 use App\Models\Lore;
 use App\Models\Mechanic;
 use App\Models\Race;
@@ -23,6 +25,8 @@ class IndexController extends Controller
         $grades = Grade::all();
         $freePoints = FreePoint::all();
         $mechanics = Mechanic::all();
-        return view('main.index', compact('chars', 'racenames', 'gradenames', 'lores', 'races', 'grades', 'freePoints', 'mechanics'));
+        $cubes = Cube::all();
+        $inventory = Inventory::all();
+        return view('main.index', compact('chars', 'racenames', 'gradenames', 'lores', 'races', 'grades', 'freePoints', 'mechanics', 'cubes', 'inventory'));
     }
 }

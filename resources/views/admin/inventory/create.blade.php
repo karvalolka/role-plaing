@@ -24,14 +24,16 @@
                     <div class="form-group">
                         <label for="cube">Выберите куб:</label>
                         <select id="cube" class="form-control" name="cube">
-                            @for ($i = 1; $i <= 6; $i++)
-                                <option value="{{ $i }}">{{ $i }}</option>
-                            @endfor
+                            @foreach ($cubes as $cube)
+                                <option>{{ $cube->name }}
+                                </option>
+                            @endforeach
                         </select>
                         @error('cube')
                         <div class="text-danger">Пожалуйста, выберите значение куба</div>
                         @enderror
                     </div>
+
 
                     <div class="form-group">
                         <label for="gold">Введите количество золота</label>

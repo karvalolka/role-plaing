@@ -51,6 +51,10 @@
                         <div class="text-danger">Пожалуйста, введите количество золота</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="cost">Иконка:</label>
+                        <input id="cost" name="icon_svg" class="form-control" placeholder="Введите svg">
+                    </div>
 
                     <input type="submit" class="btn btn-primary" value="Добавить">
                 </form>

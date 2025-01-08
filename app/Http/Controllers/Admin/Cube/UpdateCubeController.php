@@ -12,6 +12,7 @@ class UpdateCubeController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|integer',
+            'icon_svg' => 'nullable|string',
         ]);
         $cube->update($data);
         $cubes = Cube::all();

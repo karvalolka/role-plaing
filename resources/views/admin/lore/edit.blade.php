@@ -21,26 +21,61 @@
             <form action="{{ route('admin.lore.update', $lore->id) }}" method="POST" class="col-xl-12 col-md-6 mb-4">
                 @csrf
                 @method('PATCH')
-                <div class="form-group col-3 ">
+
+                <div class="form-group">
+                    <label for="era">Название эры</label>
                     <input
+                        id="era"
                         class="form-control"
                         name="era"
                         placeholder="Введите Название эры"
                         value="{{ old('era', $lore->era) }}"
                         required
                     >
-
                     @error('era')
                     <div class="text-danger">Заполните поле</div>
                     @enderror
                 </div>
+
                 <div class="form-group">
-                    <textarea class="form-control" name="text" placeholder="Измените историю" style="min-height: 150px; resize: vertical;">{{$lore->text}}</textarea>
+                    <label for="icon_svg">SVG Иконка</label>
+                    <input
+                        id="icon_svg"
+                        class="form-control"
+                        name="icon_svg"
+                        placeholder="Введите svg"
+                        value="{{ old('icon_svg', $lore->icon_svg) }}"
+                    >
+                    @error('icon_svg')
+                    <div class="text-danger">Заполните поле</div>
+                    @enderror
+                </div>
+
+                <div class="form-group">
+                    <label for="text">История</label>
+                    <textarea
+                        id="text"
+                        class="form-control"
+                        name="text"
+                        placeholder="Измените историю"
+                        style="min-height: 150px; resize: vertical;"
+                    >{{ old('text', $lore->text) }}</textarea>
                     @error('text')
                     <div class="text-danger">Заполните поле</div>
                     @enderror
                 </div>
-                <input type="submit" class="btn btn-primary" value="Обновить">
+                @if($lore->icon_svg)
+                    <div class="form-group">
+                        <label>Превью иконки:</label>
+                        <div>
+                                {!! $lore->icon_svg !!}
+                        </div>
+                    </div>
+                @endif
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary" value="Обновить">
+                </div>
             </form>
         </div>
     </div>

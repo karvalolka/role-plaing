@@ -51,6 +51,11 @@
                         <div class="text-danger small">Пожалуйста, введите количество золота</div>
                         @enderror
                     </div>
+                    <div class="form-group mb-3">
+                        <label for="cost" class="form-label">Иконка:</label>
+                        <input id="cost" name="icon_svg" class="form-control" placeholder="Введите svg"
+                               value="{{ old('icon_svg', $freePoint->icon_svg) }}">
+                    </div>
 
                     <input type="submit" class="btn btn-primary" value="Обновить">
                 </form>

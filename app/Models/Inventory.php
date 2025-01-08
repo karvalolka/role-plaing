@@ -25,5 +25,8 @@ class Inventory extends Model
         $this->gold -= $amount;
         $this->save();
     }
-
+    public function cube()
+    {
+        return $this->belongsTo(Cube::class);
+    }
 }

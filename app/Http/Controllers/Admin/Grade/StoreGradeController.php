@@ -12,6 +12,7 @@ class StoreGradeController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'icon_svg' => 'nullable|string',
         ]);
 
         Grade::firstOrCreate($data);

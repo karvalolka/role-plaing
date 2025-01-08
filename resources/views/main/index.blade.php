@@ -25,6 +25,7 @@
                         <li class="scroll" style="margin-right: 20px;"><a href="#lore">Лор</a></li>
                         <li class="scroll" style="margin-right: 20px;"><a href="#races">Расы</a></li>
                         <li class="scroll" style="margin-right: 20px;"><a href="#grades">Классы</a></li>
+                        <li class="scroll" style="margin-right: 20px;"><a href="#inventory">Инвентарь</a></li>
                         <li class="scroll" style="margin-right: 20px;"><a href="#free-points">Свободные очки</a></li>
                         <li class="scroll" style="margin-right: 20px;"><a href="#mechanics">Механики</a></li>
                     </ul>
@@ -75,8 +76,8 @@
                 @foreach($lores as $lore)
                     <div class="single-how-works"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
-                        <div class="single-how-works-icon">
-                            <i class="flaticon-lightbulb-idea"></i>
+                        <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                            {!! $lore->icon_svg !!}
                         </div>
                         <h2>{{$lore->era}}</h2>
                         <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
@@ -101,14 +102,13 @@
             </div>
             <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 @foreach($races as $race)
-                    <div class="single-how-works"
-                         style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
-                        <div class="single-how-works-icon">
-                            <i class="flaticon-lightbulb-idea"></i>
+                    <div class="single-how-works" style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
+                        <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                            {!! $race->icon_svg !!}
                         </div>
-                        <h2>{{$race->name}}</h2>
+                        <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">{{$race->name}}</h2>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
-                            <a href='{{route('personal.race.show', ['id' => $race->id])}}' class="welcome-hero-btn how-work-btn">
+                            <a href="{{ route('personal.race.show', ['id' => $race->id]) }}" class="welcome-hero-btn how-work-btn" >
                                 читать полностью
                             </a>
                         </div>
@@ -128,8 +128,8 @@
                 @foreach($grades as $grade)
                     <div class="single-how-works"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
-                        <div class="single-how-works-icon">
-                            <i class="flaticon-lightbulb-idea"></i>
+                        <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                            {!! $grade->icon_svg !!}
                         </div>
                         <h2>{{$grade->name}}</h2>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
@@ -143,6 +143,36 @@
         </div>
     </section>
 
+    {{--Инвентарь--}}
+    <section id="inventory" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
+        <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
+            <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
+                <h2 style="font-size: 36px; font-weight: bold; color: #333;">Инвентарь</h2>
+            </div>
+            <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
+                @foreach($cubes as $cube)
+                    <div class="single-how-works"
+                         style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
+                        <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                            {!! $cube->icon_svg !!}
+                        </div>
+                        <h2>{{$cube->name}}</h2>
+                        <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
+                            @if($cube->inventory)
+                                <a href="{{ route('personal.inventory.show', ['id' => $cube->inventory->id]) }}" class="welcome-hero-btn how-work-btn">
+                                    читать полностью
+                                </a>
+                            @else
+                                <span>Инвентарь отсутствует</span>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+
     {{--Свободные очки--}}
     <section id="free-points" class="blog">
         <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
@@ -154,8 +184,9 @@
                     <div class="single-blog-item"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
                         <div class="single-blog-item-img">
-                            <img src="{{asset('assets/images/blog/b1.jpg')}}" alt="blog image"
-                                 style="width: 100%; height: auto;">
+                            <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                                {!! $freePoint->icon_svg !!}
+                            </div>
                         </div>
                         <a href="{{route('personal.freePoint.show', ['id' => $freePoint->id])}}">
                         <div class="single-blog-item-txt">
@@ -178,8 +209,8 @@
                 @foreach($mechanics as $mechanic)
                     <div class="single-how-works"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
-                        <div class="single-how-works-icon">
-                            <i class="flaticon-lightbulb-idea"></i>
+                        <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
+                            {!! $mechanic->icon_svg !!}
                         </div>
                         <h2>{{$mechanic->types}}</h2>
                         <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">

@@ -27,7 +27,7 @@
                             <div class="row">
                                 @foreach($groupedFreePoints as $cost => $points)
                                     <div class="col-md-12 mb-4">
-                                        <h4 class="font-weight-bold">Стоимость: <span style="color: blue;">{{ $cost }}</span></h4>
+                                        <h4 class="font-weight-bold">Стоимость: <span style="color: blue;">{{ $cost }}   {!! preg_replace('/<svg/', '<svg width="50" height="50"', $points[0]->icon_svg) !!}</span></h4>
                                         <div class="row">
                                             @foreach($points as $freePoint)
                                                 <div class="col-md-6 mb-3">

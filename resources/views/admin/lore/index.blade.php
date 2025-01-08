@@ -27,6 +27,7 @@
                                 <thead>
                                 <tr>
                                     <th>Эпоха</th>
+                                    <th style="text-align: center;">Иконка</th>
                                     <th>Текст</th>
                                     <th class="text-center">Действия</th>
                                 </tr>
@@ -35,6 +36,11 @@
                                 @foreach($lores as $lore)
                                     <tr>
                                         <td>{{ $lore->era }}</td>
+                                        <td class="col-1" style="text-align: center; width: 50px; height: 50px;">
+                                            <div style="max-width: 50px; max-height: 50px; overflow: hidden; display: flex; justify-content: center; align-items: center;">
+                                                {!! preg_replace('/<svg/', '<svg width="50" height="50"', $lore->icon_svg) !!}
+                                            </div>
+                                        </td>
                                         <td>{{ $lore->text }}</td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center align-items-center gap-2">

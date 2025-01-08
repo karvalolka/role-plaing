@@ -13,4 +13,8 @@ class Cube extends Model
     {
         return $this->belongsToMany(Ability::class, 'ability_cubes');
     }
+    public function inventory()
+{
+    return $this->hasOne(Inventory::class);
+}
 }

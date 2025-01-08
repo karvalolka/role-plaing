@@ -36,6 +36,13 @@
                                 <div class="text-danger">Заполните поле</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="icon_svg" class="font-weight-bold">Иконка</label>
+                                <input id="icon_svg" class="form-control" name="icon_svg" placeholder="Измените svg" value="{{ old('icon_svg', $race->icon_svg) }}" required>
+                                @error('icon_svg')
+                                <div class="text-danger">Заполните поле</div>
+                                @enderror
+                            </div>
 
                             <hr class="my-4">
 
@@ -113,7 +120,14 @@
                                     </div>
                                 </div>
                             </div>
-
+                            @if($race->icon_svg)
+                                <div class="form-group">
+                                    <label>Превью иконки:</label>
+                                    <div>
+                                        {!! $race->icon_svg !!}
+                                    </div>
+                                </div>
+                            @endif
                             <div class="form-group text-center mt-4">
                                 <button type="submit" class="btn btn-primary btn-lg">Обновить</button>
                             </div>

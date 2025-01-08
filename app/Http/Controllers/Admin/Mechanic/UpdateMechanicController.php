@@ -13,6 +13,7 @@ class UpdateMechanicController extends Controller
         $data = $request->validate([
             'types' => 'required|string',
             'conditions' => 'required|string',
+            'icon_svg' => 'nullable|string',
         ]);
         $mechanic->update($data);
         $mechanics = Mechanic::all();

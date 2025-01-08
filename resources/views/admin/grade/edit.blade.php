@@ -36,6 +36,25 @@
                     <div class="text-danger">Заполните поле</div>
                     @enderror
                 </div>
+                <div class="form-group mb-3">
+                    <label for="icon">Иконка</label>
+                    <input
+                        id="icon"
+                        class="form-control"
+                        name="icon_svg"
+                        style="width: 200px;"
+                    placeholder="Измените svg"
+                    value="{{ old('icon_svg', $grade->icon_svg) }}"
+                    >
+                </div>
+                @if($grade->icon_svg)
+                    <div class="form-group">
+                        <label>Превью иконки:</label>
+                        <div>
+                            {!! $grade->icon_svg !!}
+                        </div>
+                    </div>
+                @endif
                 <input type="submit" class="btn btn-primary" value="Обновить">
             </form>
         </div>

@@ -12,6 +12,7 @@ class StoreCubeController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|integer',
+            'icon_svg' => 'nullable|string',
         ]);
         Cube::firstOrCreate($data);
         return redirect()->route('admin.cube.index');

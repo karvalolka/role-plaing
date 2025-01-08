@@ -11,11 +11,17 @@ class UpdateInventoryController extends Controller
     public function __invoke(Request $request, Inventory $inventory)
     {
         $data = $request->validate([
-            'cube' => 'required|integer|min:1|max:6',
+            'cube' => 'required|exists:cubes,id',
             'structure' => 'required|string',
             'gold' => 'required|numeric|min:0',
         ]);
-        $inventory->update($data);
+
+        $inventory->update([
+            'cube_id' => $data['cube'],
+            'structure' => $data['structure'],
+            'gold' => $data['gold'],
+        ]);
+
         $inventories = Inventory::all();
 
         return view('admin.inventory.index', compact('inventory', 'inventories'));

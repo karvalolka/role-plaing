@@ -22,7 +22,7 @@
                 @csrf
                 @method('PATCH')
 
-                <div class="form-group col-1 ">
+                <div class="form-group col-1">
                     <input
                         type="number"
                         class="form-control"
@@ -36,6 +36,22 @@
                     <div class="text-danger">Заполните поле</div>
                     @enderror
                 </div>
+                <div class="form-group col-4">
+                    <input
+                        class="form-control"
+                        name="icon_svg"
+                        placeholder="Введите svg"
+                        value="{{ old('icon_svg', $cube->icon_svg) }}"
+                    >
+                </div>
+                @if($cube->icon_svg)
+                    <div class="form-group">
+                        <label>Превью иконки:</label>
+                        <div style="max-width: 100px; max-height: 100px; overflow: hidden;">
+                            {!! $cube->icon_svg !!}
+                        </div>
+                    </div>
+                @endif
 
                 <input type="submit" class="btn btn-primary" value="Обновить">
             </form>

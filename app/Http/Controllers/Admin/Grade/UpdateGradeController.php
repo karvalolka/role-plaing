@@ -12,6 +12,7 @@ class UpdateGradeController extends Controller
     {
         $data = $request->validate([
             'name' => 'required|string',
+            'icon_svg' => 'nullable|string',
         ]);
 
         $grade->update($data);

@@ -22,6 +22,7 @@ class StoreRaceController extends Controller
             'charisma' => 'nullable|string',
             'luck' => 'nullable|string',
             'fortitude' => 'nullable|string',
+            'icon_svg' => 'nullable|string',
         ]);
 
         Race::firstOrCreate($data);

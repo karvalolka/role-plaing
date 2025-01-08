@@ -34,6 +34,10 @@
                                 <div class="text-danger">Заполните поле</div>
                                 @enderror
                             </div>
+                            <div class="form-group">
+                                <label for="icon_svg" class="font-weight-bold">Иконка</label>
+                                <input id="icon_svg" class="form-control" name="icon_svg" placeholder="Введите svg">
+                            </div>
 
                             <hr class="my-4">
 

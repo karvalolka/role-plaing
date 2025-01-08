@@ -22,6 +22,7 @@ class UpdateRaceController extends Controller
             'charisma' => 'nullable|string',
             'luck' => 'nullable|string',
             'fortitude' => 'nullable|string',
+            'icon_svg' => 'nullable|string',
         ]);
 
         $race->update($data);
