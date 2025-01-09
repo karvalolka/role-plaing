@@ -6,8 +6,7 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     EditAbilityController,
     ShowAbilityController,
     StoreAbilityController,
-    UpdateAbilityController
-};
+    UpdateAbilityController};
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Char\{CharController,
     CreateCharController,
@@ -15,57 +14,49 @@ use App\Http\Controllers\Admin\Char\{CharController,
     EditCharController,
     ShowCharController,
     StoreCharController,
-    UpdateCharController
-};
+    UpdateCharController};
 use App\Http\Controllers\Admin\Cube\{CreateCubeController,
     CubeController,
     DeleteCubeController,
     EditCubeController,
     StoreCubeController,
-    UpdateCubeController
-};
+    UpdateCubeController};
 use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
     DeleteFreePointController,
     EditFreePointController,
     FreePointController,
     StoreFreePointController,
-    UpdateFreePointController
-};
+    UpdateFreePointController};
 use App\Http\Controllers\Admin\Grade\{CreateGradeController,
     DeleteGradeController,
     EditGradeController,
     GradeController,
     StoreGradeController,
-    UpdateGradeController,
-};
+    UpdateGradeController,};
 use App\Http\Controllers\Admin\Inventory\{CreateInventoryController,
     DeleteInventoryController,
     EditInventoryController,
     InventoryController,
     StoreInventoryController,
-    UpdateInventoryController
-};
+    UpdateInventoryController};
 use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     DeleteLoreController,
     EditLoreController,
     LoreController,
     StoreLoreController,
-    UpdateLoreController
-};
+    UpdateLoreController};
 use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     DeleteMechanicController,
     EditMechanicController,
     MechanicController,
     StoreMechanicController,
-    UpdateMechanicController
-};
+    UpdateMechanicController};
 use App\Http\Controllers\Admin\Patch\{CreatePatchController,
     DeletePatchController,
     EditPatchController,
     PatchController,
     StorePatchController,
-    UpdatePatchController
-};
+    UpdatePatchController};
 use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
@@ -79,25 +70,26 @@ use App\Http\Controllers\Admin\Skill\{CreateSkillController,
     ShowSkillController,
     SkillController,
     StoreSkillController,
-    UpdateSkillController
-};
+    UpdateSkillController};
 use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
     DeleteTypeAbilityController,
     EditTypeAbilityController,
     StoreTypeAbilityController,
     TypeAbilityController,
-    UpdateTypeAbilityController
-};
+    UpdateTypeAbilityController};
 use App\Http\Controllers\Admin\User\{CreateUserController,
     DeleteUserController,
     EditUserController,
     StoreUserController,
     UpdateUserController,
-    UserController
-};
+    UserController};
 use App\Http\Controllers\Main\IndexController;
-use App\Http\Controllers\Personal\{UserCharController,
-    UserFreePointsController,
+use App\Http\Controllers\Personal\Char\{ShowCharController as UserShowCharController,
+    CharController as UserCharController,
+    CreateCharController as UserCreateCharController,
+    DeleteCharController as UserDeleteCharController,
+    StoreCharController as UserStoreCharController,};
+use App\Http\Controllers\Personal\{UserFreePointsController,
     UserGradeController,
     UserInventoryController,
     UserLoreController,
@@ -237,25 +229,29 @@ Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(func
 
 Route::prefix('personal')->middleware(['auth'])->group(function () {
     Route::prefix('char')->group(function () {
-        Route::get('/{id}', [UserCharController::class, '__invoke'])->name('personal.char.show');
+        Route::get('/', [UserCharController::class, '__invoke'])->name('personal.char.index');
+        Route::get('/create', [UserCreateCharController::class, '__invoke'])->name('personal.char.create');
+        Route::post('/', [UserStoreCharController::class, '__invoke'])->name('personal.char.store');
+        Route::get('/{char}', [UserShowCharController::class, '__invoke'])->name('personal.char.show');
+        Route::delete('/{char}', [UserDeleteCharController::class, '__invoke'])->name('personal.char.delete');
     });
     Route::prefix('lore')->group(function () {
-        Route::get('/{id}', [UserLoreController::class, '__invoke'])->name('personal.lore.show');
+        Route::get('/{lore}', [UserLoreController::class, '__invoke'])->name('personal.lore.show');
     });
     Route::prefix('race')->group(function () {
-        Route::get('/{id}', [UserRaceController::class, '__invoke'])->name('personal.race.show');
+        Route::get('/{race}', [UserRaceController::class, '__invoke'])->name('personal.race.show');
     });
     Route::prefix('grade')->group(function () {
-        Route::get('/{id}', [UserGradeController::class, '__invoke'])->name('personal.grade.show');
+        Route::get('/{grade}', [UserGradeController::class, '__invoke'])->name('personal.grade.show');
     });
     Route::prefix('free_point')->group(function () {
-        Route::get('/{id}', [UserFreePointsController::class, '__invoke'])->name('personal.freePoint.show');
+        Route::get('/{free_point}', [UserFreePointsController::class, '__invoke'])->name('personal.freePoint.show');
     });
     Route::prefix('mechanic')->group(function () {
-        Route::get('/{id}', [UserMechanicController::class, '__invoke'])->name('personal.mechanic.show');
+        Route::get('/{mechanic}', [UserMechanicController::class, '__invoke'])->name('personal.mechanic.show');
     });
     Route::prefix('inventory')->group(function () {
-        Route::get('/{id}', [UserInventoryController::class, '__invoke'])->name('personal.inventory.show');
+        Route::get('/{inventory}', [UserInventoryController::class, '__invoke'])->name('personal.inventory.show');
     });
 });
 

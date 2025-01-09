@@ -7,9 +7,9 @@ use App\Models\Lore;
 
 class UserLoreController extends Controller
 {
-    public function __invoke($id)
+    public function __invoke(Lore $lore)
     {
-        $lores = Lore::findOrFail($id);
+        $lores = Lore::findOrFail();
         return view('personal.lore.show', compact('lores'));
     }
 }

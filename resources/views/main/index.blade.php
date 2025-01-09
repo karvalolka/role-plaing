@@ -9,29 +9,29 @@
              style="padding: 0; border: none; background: rgba(255, 255, 255, 0.6); margin-top: 40px; backdrop-filter: blur(10px);">
             <div class="container"
                  style="display: flex; justify-content: space-between; align-items: center; padding: 0; margin-top: 0;">
-                <!-- Логотип и меню (слева) -->
                 <div class="navbar-header" style="display: flex; align-items: center;">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="index.html" style="margin-right: 20px;">list<span>race</span></a>
+                    <a class="navbar-brand" href="#" style="margin-right: 20px; font-size: 24px; white-space: nowrap;">создать<span>персонажа</span></a>
                 </div>
 
                 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu"
-                     style="display: flex; justify-content: center; align-items: center; flex-grow: 1;">
+                     style="display: flex; justify-content: center; align-items: center; flex-grow: 1; height: auto;">
                     <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp"
-                        style="display: flex; margin-bottom: 0; padding: 0;">
-                        <li class="scroll active" style="margin-right: 20px;"><a href="#chars">Персонажи</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#lore">Лор</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#races">Расы</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#grades">Классы</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#inventory">Инвентарь</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#free-points">Свободные очки</a></li>
-                        <li class="scroll" style="margin-right: 20px;"><a href="#mechanics">Механики</a></li>
+                        style="display: flex; margin-bottom: 0; padding: 0; list-style: none; justify-content: space-between; width: 100%;">
+                        <li class="scroll active" style="margin-right: 30px; font-size: 16px;"><a href="#chars">Персонажи</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#lore">Лор</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#races">Расы</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#grades">Классы</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#inventory">Инвентарь</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#free-points">Свободные очки</a></li>
+                        <li class="scroll" style="margin-right: 30px; font-size: 16px;"><a href="#mechanics">Механики</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
+
 
         <div class="container">
             <div class="welcome-hero-txt">
@@ -50,11 +50,19 @@
             <ul style="display: flex; justify-content: center; list-style: none; padding: 0; margin: 0;">
                 @foreach($chars as $char)
                     <li style="margin-right: 20px;">
-                        <a href="{{ route('personal.char.show', ['id' => $char->id]) }}">
+                        <a href="{{ route('personal.char.show', ['char' => $char->id]) }}">
                             <div class="single-list-topics-content">
-                                <div class="single-list-topics-icon">
-                                    <i class="flaticon-restaurant"></i>
+                                <div class="single-list-topics-icon" style="width: 200px; height: 200px; overflow: hidden;">
+                                    <div style="width: 100%; height: 100%; display: flex; justify-content: space-between; align-items: center;">
+                                        <div style="width: 50%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                            {!! $char->race->icon_svg !!}
+                                        </div>
+                                        <div style="width: 50%; height: 100%; display: flex; justify-content: center; align-items: center;">
+                                            {!! $char->grade->icon_svg !!}
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <h2>{{ $char->name }}</h2>
                                 <p>{{ $racenames[$char->race_id] }}</p>
                                 <p>{{ $gradenames[$char->grade_id] }}</p>
@@ -84,7 +92,7 @@
                             {{$lore->text}}
                         </p>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
-                            <a href='{{route('personal.lore.show', ['id' => $lore->id])}}' class="welcome-hero-btn how-work-btn">
+                            <a href='{{route('personal.lore.show', ['lore' => $lore->id])}}' class="welcome-hero-btn how-work-btn">
                                 читать полностью
                             </a>
                         </div>
@@ -108,7 +116,7 @@
                         </div>
                         <h2 style="font-size: 24px; color: #333; margin-bottom: 20px;">{{$race->name}}</h2>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
-                            <a href="{{ route('personal.race.show', ['id' => $race->id]) }}" class="welcome-hero-btn how-work-btn" >
+                            <a href="{{ route('personal.race.show', ['race' => $race->id]) }}" class="welcome-hero-btn how-work-btn" >
                                 читать полностью
                             </a>
                         </div>
@@ -133,7 +141,7 @@
                         </div>
                         <h2>{{$grade->name}}</h2>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
-                            <a href='{{route('personal.grade.show', ['id' => $grade->id])}}' class="welcome-hero-btn how-work-btn">
+                            <a href='{{route('personal.grade.show', ['grade' => $grade->id])}}' class="welcome-hero-btn how-work-btn">
                                 читать полностью
                             </a>
                         </div>
@@ -159,7 +167,7 @@
                         <h2>{{$cube->name}}</h2>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
                             @if($cube->inventory)
-                                <a href="{{ route('personal.inventory.show', ['id' => $cube->inventory->id]) }}" class="welcome-hero-btn how-work-btn">
+                                <a href="{{ route('personal.inventory.show', ['inventory' => $cube->inventory->id]) }}" class="welcome-hero-btn how-work-btn">
                                     читать полностью
                                 </a>
                             @else
@@ -172,23 +180,22 @@
         </div>
     </section>
 
-
     {{--Свободные очки--}}
-    <section id="free-points" class="blog">
+    <section id="free-points" class="works" style="padding: 60px 0; background-color: #f8f9fa;">
         <div class="container" style="width: 100%; padding-left: 0; padding-right: 0;">
             <div class="section-header" style="text-align: center; margin-bottom: 50px; margin-top: 80px;">
                 <h2 style="font-size: 36px; font-weight: bold; color: #333;">Свободные очки</h2>
             </div>
             <div class="works-content" style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px;">
                 @foreach($freePoints as $freePoint)
-                    <div class="single-blog-item"
+                    <div class="single-how-works"
                          style="text-align: center; width: 300px; margin-bottom: 30px; overflow: hidden; max-height: 450px;">
                         <div class="single-blog-item-img">
                             <div class="single-how-works-icon" style="display: flex; justify-content: center; align-items: center; margin-bottom: 20px; height: 100px; width: 100px; margin: 0 auto;">
                                 {!! $freePoint->icon_svg !!}
                             </div>
                         </div>
-                        <a href="{{route('personal.freePoint.show', ['id' => $freePoint->id])}}">
+                        <a href="{{route('personal.freePoint.show', ['free_point' => $freePoint->id])}}">
                         <div class="single-blog-item-txt">
                             <h2 style="margin-top: 20px; margin-bottom: 20px;">{{$freePoint->points}}</h2>
                         </div>
@@ -217,7 +224,7 @@
                             {{$mechanic->conditions}}
                         </p>
                         <div class="button-wrapper" style="display: flex; justify-content: center; margin-top: 10px;">
-                            <a href='{{route('personal.mechanic.show', ['id' => $mechanic->id])}}' class="welcome-hero-btn how-work-btn">
+                            <a href='{{route('personal.mechanic.show', ['mechanic' => $mechanic->id])}}' class="welcome-hero-btn how-work-btn">
                                 читать полностью
                             </a>
                         </div>

@@ -7,9 +7,9 @@ use App\Models\Inventory;
 
 class UserInventoryController extends Controller
 {
-    public function __invoke($id)
+    public function __invoke(Inventory $inventory)
     {
-        $inventory = Inventory::findOrFail($id);
+        $inventory = Inventory::findOrFail();
         return view('personal.inventory.show', compact('inventory'));
     }
 }

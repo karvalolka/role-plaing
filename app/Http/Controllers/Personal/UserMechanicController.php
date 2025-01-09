@@ -7,9 +7,9 @@ use App\Models\Mechanic;
 
 class UserMechanicController extends Controller
 {
-    public function __invoke($id)
+    public function __invoke(Mechanic $mechanic)
     {
-        $mechanics = Mechanic::findOrFail($id);
+        $mechanics = Mechanic::findOrFail();
         return view('personal.mechanic.show', compact('mechanics'));
     }
 }

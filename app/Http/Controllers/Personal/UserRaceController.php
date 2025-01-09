@@ -7,9 +7,9 @@ use App\Models\Race;
 
 class UserRaceController extends Controller
 {
-    public function __invoke($id)
+    public function __invoke(Race $race)
     {
-        $races = Race::findOrFail($id);
+        $races = Race::findOrFail();
         return view('personal.race.show', compact('races'));
     }
 }

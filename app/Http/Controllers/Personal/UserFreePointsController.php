@@ -7,9 +7,9 @@ use App\Models\FreePoint;
 
 class UserFreePointsController extends Controller
 {
-    public function __invoke($id)
+    public function __invoke(FreePoint $freePoint)
     {
-        $free_points = FreePoint::findOrFail($id);
+        $free_points = FreePoint::findOrFail();
         return view('personal.freePoint.show', compact('free_points'));
     }
 }
