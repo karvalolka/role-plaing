@@ -12,12 +12,14 @@ use App\Models\Lore;
 use App\Models\Mechanic;
 use App\Models\Race;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
     public function __invoke()
     {
-        $chars = Char::all();
+        $user = Auth::user();
+        $chars = $user->chars;
         $racenames = Race::all()->pluck('name', 'id');
         $gradenames = Grade::all()->pluck('name', 'id');
         $lores = Lore::all();

@@ -52,6 +52,52 @@
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Класс</td>
                                 <td style="padding-top: 3px; padding-bottom: 3px;">{{ $char->grade->name }}</td>
                             </tr>
+                            <tr>
+                                <td class="col-4 text-center">Жизни</td>
+                                <td class="text-center">{{ $char->hp }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">
+                                    @if ($char->intelligence > $char->agility)
+                                        Мана
+                                    @else
+                                        Стамина
+                                    @endif
+                                </td>
+                                <td class="text-center">{{ $char->{'mpSm'} }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Сила</td>
+                                <td class="text-center">{{ $char->strength }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Ловкость</td>
+                                <td class="text-center">{{ $char->agility }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Выносливость</td>
+                                <td class="text-center">{{ $char->stamina }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Восприятие</td>
+                                <td class="text-center">{{ $char->reception }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Интеллект</td>
+                                <td class="text-center">{{ $char->intelligence }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Харизма</td>
+                                <td class="text-center">{{ $char->charisma }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Удача</td>
+                                <td class="text-center">{{ $char->luck }}</td>
+                            </tr>
+                            <tr>
+                                <td class="col-4 text-center">Сила воли</td>
+                                <td class="text-center">{{ $char->fortitude }}</td>
+                            </tr>
                             <tr style="text-align: center;">
                                 <td class="col-2" style="padding-top: 3px; padding-bottom: 3px;">Инвентарь</td>
                                 <td style="padding-top: 3px; padding-bottom: 3px;">
@@ -64,14 +110,13 @@
 
                                     @foreach($char->freePoints as $free_point)
                                         @if($free_point->name)
-                                        <p style="margin: 0;">
-                                            {{ $free_point->name }} (Количество: {{ $free_point->pivot->quantity }})
-                                        </p>
+                                            <p style="margin: 0;">
+                                                {{ $free_point->name }} (Количество: {{ $free_point->pivot->quantity }})
+                                            </p>
                                         @endif
                                     @endforeach
                                 </td>
                             </tr>
-
 
 
                             <tr style="text-align: center;">

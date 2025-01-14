@@ -110,6 +110,20 @@
 
         <div class="stat"><strong>Раса:</strong> {{ $chars->race->name }}</div>
         <div class="stat"><strong>Класс:</strong> {{ $chars->grade->name }}</div>
+        <div class="stat"><strong>Жизни:</strong> {{ $chars->hp }}</div>
+        <div class="stat"><strong>@if ($chars->intelligence > $chars->agility)
+                    Мана:
+                @else
+                    Стамина:
+                @endif</strong> {{ $chars->{'mpSm'} }}</div>
+        <div class="stat"><strong>Сила:</strong> {{ $chars->strength }}</div>
+        <div class="stat"><strong>Ловкость:</strong> {{ $chars->agility }}</div>
+        <div class="stat"><strong>Выносливость:</strong> {{ $chars->stamina }}</div>
+        <div class="stat"><strong>Восприятие:</strong> {{ $chars->reception }}</div>
+        <div class="stat"><strong>Интеллект:</strong> {{ $chars->intelligence }}</div>
+        <div class="stat"><strong>Харизма:</strong> {{ $chars->charisma }}</div>
+        <div class="stat"><strong>Удача:</strong> {{ $chars->luck }}</div>
+        <div class="stat"><strong>Сила воли:</strong> {{ $chars->fortitude }}</div>
         <div class="stat"><strong>Способности:</strong> {{ $chars->skill->name }}</div>
         <div class="stat"><strong>Золото:</strong> {{ $chars->gold }}</div>
 

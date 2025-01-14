@@ -51,7 +51,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mp_sm">Мана/Стамина</label>
-                                        <input id="mp_sm" class="form-control" name="mp/sm" placeholder="Введите количество">
+                                        <input id="mp_sm" class="form-control" name="mpSm" placeholder="Введите количество">
                                     </div>
                                 </div>
                             </div>

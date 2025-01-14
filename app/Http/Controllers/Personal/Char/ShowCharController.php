@@ -7,9 +7,9 @@ use App\Models\Char;
 
 class ShowCharController extends Controller
 {
-    public function __invoke(Char $char)
+    public function __invoke($id)
     {
-        $chars = Char::findOrFail();
+        $chars = Char::findOrFail($id);
         return view('personal.char.show', compact('chars'));
     }
 }

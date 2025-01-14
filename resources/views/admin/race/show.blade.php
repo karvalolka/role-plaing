@@ -41,10 +41,10 @@
                                 </tr>
                             @endif
 
-                            @if($race->{'mp/sm'})
+                            @if($race->{'mpSm'})
                                 <tr>
                                     <td class="col-4 text-center font-weight-bold">Мана/Стамина</td>
-                                    <td class="text-center">{{ $race->{'mp/sm'} }}</td>
+                                    <td class="text-center">{{ $race->{'mpSm'} }}</td>
                                 </tr>
                             @endif
 

@@ -23,6 +23,14 @@ class StoreCharController extends Controller
             'free_point_id.*' => 'exists:free_points,id',
             'free_point_count' => 'nullable|array',
             'free_point_count.*' => 'integer|min:0',
+            'strength' => 'required|integer|min:1,max:6',
+            'agility' => 'required|integer|min:1,max:6',
+            'stamina' => 'required|integer|min:1,max:6',
+            'reception' => 'required|integer|min:1,max:6',
+            'intelligence' => 'required|integer|min:1,max:6',
+            'charisma' => 'required|integer|min:1,max:6',
+            'luck' => 'required|integer|min:1,max:6',
+            'fortitude' => 'required|integer|min:1,max:6',
         ]);
 
         $grade_id = $data['grade_id'];
@@ -44,11 +52,19 @@ class StoreCharController extends Controller
             'grade_id' => $data['grade_id'],
             'inventory_id' => $data['inventory_id'],
             'skill_id' => $data['skill_id'],
+            'strength' => $data['strength'],
+            'agility' => $data['agility'],
+            'stamina' => $data['stamina'],
+            'reception' => $data['reception'],
+            'intelligence' => $data['intelligence'],
+            'charisma' => $data['charisma'],
+            'luck' => $data['luck'],
+            'fortitude' => $data['fortitude'],
         ]);
 
         // Получаем золото из инвентаря
         $inventory = Inventory::find($data['inventory_id']);
-        $goldFromInventory = (float) $inventory->gold;
+        $goldFromInventory = (float)$inventory->gold;
 
         // Переменная для накопления золота с FreePoint
         $goldFromFreePoints = 0;

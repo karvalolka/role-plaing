@@ -13,7 +13,7 @@
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="#" style="margin-right: 20px; font-size: 24px; white-space: nowrap;">создать<span>персонажа</span></a>
+                    <a class="navbar-brand" href="{{route('personal.char.create')}}" style="margin-right: 20px; font-size: 24px; white-space: nowrap;">создать<span>персонажа</span></a>
                 </div>
 
                 <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu"

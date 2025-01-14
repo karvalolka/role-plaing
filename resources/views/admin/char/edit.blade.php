@@ -93,6 +93,74 @@
                                 @enderror
                             </div>
 
+                            <!-- Характеристики -->
+                            <div class="form-group">
+                                <label for="inventory" class="font-weight-bold">Введите значение</label>
+                                <div class="form-group">
+                                    <label for="strength" class="stat-label">Сила</label>
+                                    <input type="number" id="strength" class="stat-input" name="strength" min="1" max="6" value="{{ old('strength', $char->strength ?? '') }}">
+                                    @error('strength')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="agility" class="stat-label">Ловкость</label>
+                                    <input type="number" id="agility" class="stat-input" name="agility" min="1" max="6" value="{{ old('agility', $char->agility ?? '') }}">
+                                    @error('agility')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="stamina" class="stat-label">Выносливость</label>
+                                    <input type="number" id="stamina" class="stat-input" name="stamina" min="1" max="6" value="{{ old('stamina', $char->stamina ?? '') }}">
+                                    @error('stamina')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="reception" class="stat-label">Восприятие</label>
+                                    <input type="number" id="reception" class="stat-input" name="reception" min="1" max="6" value="{{ old('reception', $char->reception ?? '') }}">
+                                    @error('reception')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="intelligence" class="stat-label">Интеллект</label>
+                                    <input type="number" id="intelligence" class="stat-input" name="intelligence" min="1" max="6" value="{{ old('intelligence', $char->intelligence ?? '') }}">
+                                    @error('intelligence')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="charisma" class="stat-label">Харизма</label>
+                                    <input type="number" id="charisma" class="stat-input" name="charisma" min="1" max="6" value="{{ old('charisma', $char->charisma ?? '') }}">
+                                    @error('charisma')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="luck" class="stat-label">Удача</label>
+                                    <input type="number" id="luck" class="stat-input" name="luck" min="1" max="6" value="{{ old('luck', $char->luck ?? '') }}">
+                                    @error('luck')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="fortitude" class="stat-label">Сила воли</label>
+                                    <input type="number" id="fortitude" class="stat-input" name="fortitude" min="1" max="6" value="{{ old('fortitude', $char->fortitude ?? '') }}">
+                                    @error('fortitude')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <!-- Блок для выбора свободных очков -->
                             <div class="form-group">
                                 <label class="font-weight-bold">Выберите свободные очки</label>

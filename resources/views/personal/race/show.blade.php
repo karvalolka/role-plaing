@@ -113,8 +113,8 @@
             <div class="stat"><strong>Жизни:</strong> {{ $races->hp }}</div>
         @endif
 
-        @if($races->{'mp/sm'} !== null)
-            <div class="stat"><strong>Мана/Стамина:</strong> {{ $races->{'mp/sm'} }}</div>
+        @if($races->{'mpSm'} !== null)
+            <div class="stat"><strong>Мана/Стамина:</strong> {{ $races->{'mpSm'} }}</div>
         @endif
 
         @if($races->strength !== null)

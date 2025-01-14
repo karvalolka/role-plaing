@@ -56,7 +56,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="mp_sm">Мана/Стамина</label>
-                                        <input id="mp_sm" class="form-control" name="mp/sm" placeholder="Измените значение" value="{{ old('mp/sm', $race->{'mp/sm'}) }}">
+                                        <input id="mp_sm" class="form-control" name="mpSm" placeholder="Измените значение" value="{{ old('mpSm', $race->{'mpSm'}) }}">
                                     </div>
                                 </div>
                             </div>

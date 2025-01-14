@@ -13,7 +13,7 @@ class StoreRaceController extends Controller
         $data = $request->validate([
             'name' => 'required|string',
             'hp' => 'nullable|string',
-            'mp/sm' => 'nullable|string',
+            'mpSm' => 'nullable|string',
             'strength' => 'nullable|string',
             'agility' => 'nullable|string',
             'stamina' => 'nullable|string',
