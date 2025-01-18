@@ -3,158 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Задача с ячейками и свободными очками</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .cell {
-            width: 80px;
-            height: 40px;
-            text-align: center;
-            font-size: 18px;
-            padding: 5px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background-color: #fff;
-            transition: background-color 0.3s ease;
-        }
-
-        .cell:focus {
-            outline: none;
-            border-color: #66afe9;
-            background-color: #e6f7ff;
-        }
-
-        #nextBtn, #nextBtn2, #nextBtn3 {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #nextBtn:hover, #nextBtn2:hover, #nextBtn3:hover {
-            background-color: #45a049;
-        }
-
-        #free-points {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .error-message {
-            color: red;
-            font-weight: bold;
-        }
-
-        .cell.hidden {
-            background-color: #f0f0f0;
-            opacity: 0.5;
-        }
-
-        #intro-message {
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            background-color: #f0f8ff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-
-        /* Скрытие контейнеров выбора класса и расы */
-        .hidden-container {
-            display: none;
-        }
-
-        .form-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            margin: 20px auto;
-        }
-
-        .form-group {
-            display: flex;
-            align-items: center; /* Вертикальное выравнивание */
-            margin-bottom: 15px;
-        }
-
-        .stat-label {
-            font-weight: bold;
-            color: #333;
-            font-size: 16px;
-            margin-right: 10px; /* Отступ справа от текста */
-        }
-
-        .stat-input {
-            width: 50px; /* Ширина поля ввода */
-            padding: 5px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-
-        .stat-input:focus {
-            outline: none;
-            border-color: #66afe9;
-            background-color: #e6f7ff;
-        }
-
-        label {
-            font-weight: bold;
-            color: #333;
-            font-size: 16px;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: #fff;
-            transition: background-color 0.3s ease;
-        }
-
-        select:focus, input[type="number"]:focus {
-            outline: none;
-            border-color: #66afe9;
-            background-color: #e6f7ff;
-        }
-
-        .text-danger {
-            color: red;
-            font-size: 14px;
-            font-weight: bold;
-            margin-top: 5px;
-        }
-    </style>
+    <title>Создание персонажа</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 <body>
 
@@ -163,7 +13,7 @@
 </div>
 
 <!-- 10 Ячеек -->
-<div class="container">
+<div id="block-1" class="form-container">
     <input type="number" class="cell" id="cell1" min="1" max="6">
     <input type="number" class="cell" id="cell2" min="1" max="6">
     <input type="number" class="cell" id="cell3" min="1" max="6">
@@ -211,7 +61,7 @@
     <button id="nextBtn2" class="hidden-container">Далее</button>
 </div>
 
-<!-- Контейнеры для расстановки статок (будут скрыты изначально) -->
+<!-- Контейнер для расстановки статок (будут скрыты изначально) -->
 <div id="stats-container" class="hidden-container form-container">
     <div class="form-group">
         <label for="strength" class="stat-label">Сила</label>
@@ -249,96 +99,50 @@
     <button id="nextBtn3" class="hidden-container">Далее</button>
 </div>
 
-<script>
-    // Функция для вычисления свободных очков
-    function calculateFreePoints(cells) {
-        // Сортируем числа по возрастанию и убираем два минимальных
-        cells.sort((a, b) => a - b).splice(0, 2);
+<!-- Контейнер для выбора навыков (будут скрыты изначально) -->
+<div id="ability-container" class="hidden-container form-container">
+    <div class="form-group">
+        <label for="ability">Выберите навыки</label>
+        <select id="ability" class="select2 form-control" name="ability_id" required>
 
-        // Считаем сумму оставшихся 10 чисел
-        const sumRemaining = cells.reduce((sum, num) => sum + num, 0);
+        </select>
+    </div>
+    <button id="nextBtn4" class="hidden-container">Далее</button>
+</div>
 
-        // Вычисляем свободные очки
-        return 48 - sumRemaining;
-    }
+<!-- Контейнер для выбора инвенторя (будут скрыты изначально) -->
+<div id="inventory-container" class="hidden-container form-container">
+    <div class="form-group">
+        <label for="inventory">Выберите инвентарь</label>
+        <select id="inventory" class="select2 form-control" name="inventory_id" required>
 
-    // Обработчик клика на первую кнопку "Далее"
-    document.getElementById('nextBtn').addEventListener('click', function () {
-        // Скрываем первую кнопку "Далее" после нажатия
-        document.getElementById('nextBtn').style.display = 'none';
+        </select>
+    </div>
+    <button id="nextBtn5" class="hidden-container">Далее</button>
+</div>
 
-        // Получаем значения из ячеек
-        let cells = [];
-        let cellValues = [];
+<!-- Контейнер для выбора за свободку (будут скрыты изначально) -->
+<div id="free_point-container" class="hidden-container form-container">
+    <div class="form-group">
+        <label for="free_point">Выберите навыки</label>
+        <select id="free_point" class="select2 form-control" name="free_point_id" required>
 
-        for (let i = 1; i <= 10; i++) {
-            const value = document.getElementById('cell' + i).value;
-            if (value) {
-                cells.push(parseInt(value));  // Массив всех значений ячеек
-                cellValues.push({index: i, value: parseInt(value)}); // Массив с номерами ячеек и значениями
-            }
-        }
+        </select>
+    </div>
+    <button id="nextBtn6" class="hidden-container">Далее</button>
+</div>
 
-        // Проверяем, что все 10 ячеек заполнены
-        if (cells.length < 10) {
-            alert("Заполните все ячейки!");
-            return;
-        }
+<!-- Контейнер Итоговый (будут скрыты изначально) -->
+<div id="finish-container" class="hidden-container form-container">
+    <div class="form-group">
+        <label>Получите распешитесь</label>
+        <select class="select2 form-control" name="finish_id" required>
 
-        // Вычисляем свободные очки
-        const freePoints = calculateFreePoints(cells);
+        </select>
+    </div>
+    <button id="nextBtn7" class="hidden-container">Сохранить</button>
+</div>
 
-        // Проверяем, если свободные очки больше 24
-        if (freePoints > 24) {
-            document.getElementById('free-points').innerHTML = `<span class="error-message">Слишком маленькие значения! Бросьте кубики заново.</span>`;
-
-            // Очищаем все ячейки и делаем их видимыми снова
-            for (let i = 1; i <= 10; i++) {
-                const cell = document.getElementById('cell' + i);
-                cell.value = "";
-                cell.classList.remove('hidden');  // Снимаем скрытие с ячеек
-            }
-
-            // Показываем первую кнопку снова
-            document.getElementById('nextBtn').style.display = 'block';
-        } else {
-            // Отображаем свободные очки
-            document.getElementById('free-points').innerText = `Свободные очки: ${freePoints}`;
-
-            // Показываем контейнеры для выбора расы и класса
-            document.getElementById('race-class-container').classList.remove('hidden-container');
-
-            // Сортируем по значению и убираем два минимальных
-            const sortedCells = cellValues.sort((a, b) => a.value - b.value);
-            const remainingCells = sortedCells.slice(2); // Оставляем 10 значений
-
-            // Скрываем ячейки с минимальными значениями
-            for (let i = 1; i <= 10; i++) {
-                const currentCell = document.getElementById('cell' + i);
-                if (remainingCells.some(cell => cell.index === i)) {
-                    currentCell.classList.remove('hidden'); // Оставляем видимыми
-                } else {
-                    currentCell.classList.add('hidden'); // Скрываем
-                }
-            }
-        }
-    });
-
-    // Обработчик клика на вторую кнопку "Далее"
-    document.getElementById('nextBtn2').addEventListener('click', function () {
-        // Скрываем вторую кнопку "Далее"
-        document.getElementById('nextBtn2').style.display = 'none';
-
-        // Показываем контейнер для ввода характеристик
-        document.getElementById('stats-container').classList.remove('hidden-container');
-    });
-
-    // Обработчик клика на третью кнопку "Далее"
-    document.getElementById('nextBtn3').addEventListener('click', function () {
-        // Здесь можно добавить дальнейшие действия, если необходимо
-        alert("Всё готово!");
-    });
-</script>
-
+<script src="{{ asset('js/visionButton.js') }}"></script>
 </body>
 </html>

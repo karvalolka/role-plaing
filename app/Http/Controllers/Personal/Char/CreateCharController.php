@@ -7,17 +7,19 @@ use App\Models\FreePoint;
 use App\Models\Grade;
 use App\Models\Inventory;
 use App\Models\Race;
-use App\Models\User;
+use App\Models\Skill;
+use Illuminate\Http\Request;
 
 class CreateCharController extends Controller
 {
-    public function __invoke()
+    public function __invoke(Request $request)
     {
-        $users = User::all();
         $races = Race::all();
         $grades = Grade::all();
+        $skills = Skill::all();
         $inventories = Inventory::all();
         $free_points = FreePoint::all();
-        return view('personal.char.create', compact('users', 'races', 'grades', 'inventories', 'free_points'));
+        return view('personal.char.create', compact( 'races', 'grades', 'inventories', 'free_points', 'skills'));
     }
+
 }

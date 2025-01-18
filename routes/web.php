@@ -6,7 +6,8 @@ use App\Http\Controllers\Admin\Ability\{AbilityController,
     EditAbilityController,
     ShowAbilityController,
     StoreAbilityController,
-    UpdateAbilityController};
+    UpdateAbilityController
+};
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Char\{CharController,
     CreateCharController,
@@ -14,93 +15,106 @@ use App\Http\Controllers\Admin\Char\{CharController,
     EditCharController,
     ShowCharController,
     StoreCharController,
-    UpdateCharController};
+    UpdateCharController
+};
 use App\Http\Controllers\Admin\Cube\{CreateCubeController,
     CubeController,
     DeleteCubeController,
     EditCubeController,
     StoreCubeController,
-    UpdateCubeController};
+    UpdateCubeController
+};
 use App\Http\Controllers\Admin\FreePoint\{CreateFreePointController,
     DeleteFreePointController,
     EditFreePointController,
     FreePointController,
     StoreFreePointController,
-    UpdateFreePointController};
+    UpdateFreePointController
+};
 use App\Http\Controllers\Admin\Grade\{CreateGradeController,
     DeleteGradeController,
     EditGradeController,
     GradeController,
     StoreGradeController,
-    UpdateGradeController,};
+    UpdateGradeController,
+};
 use App\Http\Controllers\Admin\Inventory\{CreateInventoryController,
     DeleteInventoryController,
     EditInventoryController,
     InventoryController,
     StoreInventoryController,
-    UpdateInventoryController};
+    UpdateInventoryController
+};
 use App\Http\Controllers\Admin\Lore\{CreateLoreController,
     DeleteLoreController,
     EditLoreController,
     LoreController,
     StoreLoreController,
-    UpdateLoreController};
+    UpdateLoreController
+};
 use App\Http\Controllers\Admin\Mechanic\{CreateMechanicController,
     DeleteMechanicController,
     EditMechanicController,
     MechanicController,
     StoreMechanicController,
-    UpdateMechanicController};
+    UpdateMechanicController
+};
 use App\Http\Controllers\Admin\Patch\{CreatePatchController,
     DeletePatchController,
     EditPatchController,
     PatchController,
     StorePatchController,
-    UpdatePatchController};
+    UpdatePatchController
+};
 use App\Http\Controllers\Admin\Race\{CreateRaceController,
     DeleteRaceController,
     EditRaceController,
     RaceController,
     ShowRaceController,
     StoreRaceController,
-    UpdateRaceController};
+    UpdateRaceController
+};
 use App\Http\Controllers\Admin\Skill\{CreateSkillController,
     DeleteSkillController,
     EditSkillController,
     ShowSkillController,
     SkillController,
     StoreSkillController,
-    UpdateSkillController};
+    UpdateSkillController
+};
 use App\Http\Controllers\Admin\TypeAbility\{CreateTypeAbilityController,
     DeleteTypeAbilityController,
     EditTypeAbilityController,
     StoreTypeAbilityController,
     TypeAbilityController,
-    UpdateTypeAbilityController};
+    UpdateTypeAbilityController
+};
 use App\Http\Controllers\Admin\User\{CreateUserController,
     DeleteUserController,
     EditUserController,
     StoreUserController,
     UpdateUserController,
-    UserController};
+    UserController
+};
 use App\Http\Controllers\Main\IndexController;
-use App\Http\Controllers\Personal\Char\{ShowCharController as UserShowCharController,
-    CharController as UserCharController,
-    CreateCharController as UserCreateCharController,
-    DeleteCharController as UserDeleteCharController,
-    StoreCharController as UserStoreCharController,};
 use App\Http\Controllers\Personal\{UserFreePointsController,
     UserGradeController,
     UserInventoryController,
     UserLoreController,
     UserMechanicController,
-    UserRaceController};
+    UserRaceController
+};
+use App\Http\Controllers\Personal\Char\{CharController as UserCharController,
+    CreateCharController as UserCreateCharController,
+    DeleteCharController as UserDeleteCharController,
+    ShowCharController as UserShowCharController,
+    StoreCharController as UserStoreCharController,
+};
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [IndexController::class, '__invoke'])->name('main.index');
-
 
 Route::prefix('admin')->middleware(['auth', AdminMiddleware::class])->group(function () {
     Route::get('/', [AdminController::class, '__invoke'])->name('admin.main.index');

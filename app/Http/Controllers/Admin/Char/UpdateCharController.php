@@ -24,14 +24,14 @@ class UpdateCharController extends Controller
             'free_point_id.*' => 'exists:free_points,id',
             'free_point_count' => 'nullable|array',
             'free_point_count.*' => 'integer|min:0',
-            'strength' => 'required|integer|min:1,max:6',
-            'agility' => 'required|integer|min:1,max:6',
-            'stamina' => 'required|integer|min:1,max:6',
-            'reception' => 'required|integer|min:1,max:6',
-            'intelligence' => 'required|integer|min:1,max:6',
-            'charisma' => 'required|integer|min:1,max:6',
-            'luck' => 'required|integer|min:1,max:6',
-            'fortitude' => 'required|integer|min:1,max:6',
+            'strength' => 'required|integer|min:1',
+            'agility' => 'required|integer|min:1',
+            'stamina' => 'required|integer|min:1',
+            'reception' => 'required|integer|min:1',
+            'intelligence' => 'required|integer|min:1',
+            'charisma' => 'required|integer|min:1',
+            'luck' => 'required|integer|min:1',
+            'fortitude' => 'required|integer|min:1',
         ]);
 
         // Получаем навык для класса персонажа
